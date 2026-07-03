@@ -8,8 +8,10 @@ __pycache__/
 venv/
 
 # Project artifacts
-data/
-results/
+/data
+/data/
+/results
+/results/
 checkpoints/
 logs/
 
