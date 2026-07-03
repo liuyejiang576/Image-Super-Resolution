@@ -1,0 +1,13 @@
+dataset:
+  train_hr_dir: data/div2k/DIV2K_train_HR
+  valid_hr_dir: data/div2k/DIV2K_valid_HR
+  benchmark_root: data/benchmarks
+  scale: 4
+  hr_patch_size: 256
+  augment: true
+
+dataloader:
+  batch_size: 8
+  num_workers: 4
+  shuffle: true
+  pin_memory: true
