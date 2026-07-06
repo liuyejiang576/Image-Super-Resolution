@@ -1,0 +1,37 @@
+dataset:
+  train_hr_dir: data/div2k/DIV2K_train_HR
+  valid_hr_dir: data/div2k/DIV2K_valid_HR
+  scale: 4
+  hr_patch_size: 256
+  augment: true
+
+model:
+  num_channels: 3
+  d: 56
+  s: 12
+  m: 4
+
+train:
+  seed: 42
+  batch_size: 16
+  num_workers: 8
+  epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0
+  milestones: [60, 85]
+  gamma: 0.5
+  amp: true
+  loss_type: mse
+  log_every: 50
+  max_train_steps_per_epoch: null
+
+validation:
+  batch_size: 1
+  num_workers: 2
+  max_images: 20
+
+checkpoint:
+  dir: results/fsrcnn_fix_clean/checkpoints
+  best_name: best.pt
+  latest_name: latest.pt
+  log_path: results/fsrcnn_fix_clean/train_log.jsonl

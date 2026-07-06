@@ -1,0 +1,16 @@
+[
+  {
+    "run_id": "mobile_srnet_plus_20k",
+    "model": "mobile_srnet",
+    "variant": "plus",
+    "feat": 64,
+    "num_blocks": 8,
+    "config": "configs/exp/mobile_srnet_plus_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "milestones": [364, 516],
+    "loss_type": "mse",
+    "description": "Fair-budget 20k: MobileSRNet-Plus (64ch, 8 blocks), Stage B passed (+0.087 dB @ 2k)"
+  }
+]

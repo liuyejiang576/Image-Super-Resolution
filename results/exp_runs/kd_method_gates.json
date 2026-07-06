@@ -1,0 +1,182 @@
+{
+  "thresholds": {
+    "gate1_min_teacher_advantage": 0.001,
+    "gate1_min_student_teacher_gap": 0.001,
+    "gate2_cosine_max": 0.85,
+    "gate2_min_norm_ratio": 0.05
+  },
+  "student_source": "/home/hyb/CV_project/Image-Super-Resolution/results/exp_runs/mobile_srnet_20k/checkpoints/best.pt",
+  "device": "cpu",
+  "elapsed_sec": 561.3128862380981,
+  "methods": [
+    {
+      "method_id": "vgg_relu3",
+      "description": "L1 on frozen VGG16 relu3_3 features",
+      "gate1": {
+        "student_teacher_gap": 0.4903558669029735,
+        "student_hr_gap": 0.6905183971393853,
+        "teacher_hr_gap": 0.6332734495517798,
+        "teacher_advantage": 0.057244947587605566,
+        "gate1_pass": true,
+        "gate1_reason": "signal present",
+        "n_patches": 64
+      },
+      "gate2": {
+        "mean_cosine_grad_gt_vs_kd": 0.7121120765805244,
+        "median_cosine": 0.707868903875351,
+        "std_cosine": 0.0724916896686371,
+        "mean_grad_gt_norm": 0.07042421726509929,
+        "mean_grad_kd_norm": 6.582605332136154,
+        "norm_ratio_kd_over_gt": 93.47076315178799,
+        "lambda_for_equal_gradient": 0.010698532528038648,
+        "gate2_pass": true,
+        "gate2_reason": "non-redundant gradient",
+        "n_batches": 8
+      },
+      "verdict": "PROCEED",
+      "verdict_reason": "passes both gates \u2014 eligible for Stage B (1\u20132k update probe)",
+      "rank_score": 1.5404102426254689
+    },
+    {
+      "method_id": "vgg_relu4",
+      "description": "L1 on frozen VGG16 relu4_3 features",
+      "gate1": {
+        "student_teacher_gap": 0.21676961210323498,
+        "student_hr_gap": 0.28870116343023255,
+        "teacher_hr_gap": 0.26852194278035313,
+        "teacher_advantage": 0.020179220649879426,
+        "gate1_pass": true,
+        "gate1_reason": "signal present",
+        "n_patches": 64
+      },
+      "gate2": {
+        "mean_cosine_grad_gt_vs_kd": 0.6736801862716675,
+        "median_cosine": 0.6860337853431702,
+        "std_cosine": 0.0730209282912337,
+        "mean_grad_gt_norm": 0.0812373433727771,
+        "mean_grad_kd_norm": 3.550498552620411,
+        "norm_ratio_kd_over_gt": 43.705251860934126,
+        "lambda_for_equal_gradient": 0.022880545413212654,
+        "gate2_pass": true,
+        "gate2_reason": "non-redundant gradient",
+        "n_batches": 8
+      },
+      "verdict": "PROCEED",
+      "verdict_reason": "passes both gates \u2014 eligible for Stage B (1\u20132k update probe)",
+      "rank_score": 0.2877938180551
+    },
+    {
+      "method_id": "wavelet_hf",
+      "description": "L1 on Haar LH/HL/HH high-frequency subbands",
+      "gate1": {
+        "student_teacher_gap": 0.008373377594580234,
+        "student_hr_gap": 0.02134899686643621,
+        "teacher_hr_gap": 0.01889395132820937,
+        "teacher_advantage": 0.002455045538226841,
+        "gate1_pass": true,
+        "gate1_reason": "signal present",
+        "n_patches": 64
+      },
+      "gate2": {
+        "mean_cosine_grad_gt_vs_kd": 0.3080181870609522,
+        "median_cosine": 0.31828221678733826,
+        "std_cosine": 0.06551237461943996,
+        "mean_grad_gt_norm": 0.08779731043614447,
+        "mean_grad_kd_norm": 0.11592988204210997,
+        "norm_ratio_kd_over_gt": 1.320426348668465,
+        "lambda_for_equal_gradient": 0.7573311461168681,
+        "gate2_pass": true,
+        "gate2_reason": "non-redundant gradient",
+        "n_batches": 8
+      },
+      "verdict": "PROCEED",
+      "verdict_reason": "passes both gates \u2014 eligible for Stage B (1\u20132k update probe)",
+      "rank_score": 0.0022432021594526778
+    },
+    {
+      "method_id": "pixel_charbonnier",
+      "description": "Charbonnier(student, teacher) \u2014 current baseline (expected fail Gate 2)",
+      "gate1": {
+        "student_teacher_gap": 0.013742565522989025,
+        "student_hr_gap": 0.02830859633468208,
+        "teacher_hr_gap": 0.0234513449613587,
+        "teacher_advantage": 0.004857251373323379,
+        "gate1_pass": true,
+        "gate1_reason": "signal present",
+        "n_patches": 64
+      },
+      "gate2": {
+        "mean_cosine_grad_gt_vs_kd": 0.9242810606956482,
+        "median_cosine": 0.9297972023487091,
+        "std_cosine": 0.04238571300678646,
+        "mean_grad_gt_norm": 0.08521054312586784,
+        "mean_grad_kd_norm": 0.19249387085437775,
+        "norm_ratio_kd_over_gt": 2.2590381869769036,
+        "lambda_for_equal_gradient": 0.442666266451309,
+        "gate2_pass": false,
+        "gate2_reason": "gradient redundant (cosine=0.924 >= 0.85)",
+        "n_batches": 8
+      },
+      "verdict": "REJECT",
+      "verdict_reason": "Gate2 fail: gradient redundant (cosine=0.924 >= 0.85)",
+      "rank_score": -1.0
+    },
+    {
+      "method_id": "residual_charbonnier",
+      "description": "Charbonnier on (output \u2212 bicubic) residual",
+      "gate1": {
+        "student_teacher_gap": 0.014614555449952604,
+        "student_hr_gap": 0.02928664512364776,
+        "teacher_hr_gap": 0.024419398167083273,
+        "teacher_advantage": 0.004867246956564486,
+        "gate1_pass": true,
+        "gate1_reason": "signal present",
+        "n_patches": 64
+      },
+      "gate2": {
+        "mean_cosine_grad_gt_vs_kd": 0.9215539991855621,
+        "median_cosine": 0.92930668592453,
+        "std_cosine": 0.028653570095011547,
+        "mean_grad_gt_norm": 0.06528321513906121,
+        "mean_grad_kd_norm": 0.14879837166517973,
+        "norm_ratio_kd_over_gt": 2.279274563120414,
+        "lambda_for_equal_gradient": 0.4387360856741023,
+        "gate2_pass": false,
+        "gate2_reason": "gradient redundant (cosine=0.922 >= 0.85)",
+        "n_batches": 8
+      },
+      "verdict": "REJECT",
+      "verdict_reason": "Gate2 fail: gradient redundant (cosine=0.922 >= 0.85)",
+      "rank_score": -1.0
+    },
+    {
+      "method_id": "wavelet_lf",
+      "description": "L1 on Haar LL low-frequency subband (sanity / likely redundant)",
+      "gate1": {
+        "student_teacher_gap": 0.024859527533408254,
+        "student_hr_gap": 0.044060554428142495,
+        "teacher_hr_gap": 0.03486125703420839,
+        "teacher_advantage": 0.009199297393934103,
+        "gate1_pass": true,
+        "gate1_reason": "signal present",
+        "n_patches": 64
+      },
+      "gate2": {
+        "mean_cosine_grad_gt_vs_kd": 0.8616771474480629,
+        "median_cosine": 0.9008361101150513,
+        "std_cosine": 0.10452969236098904,
+        "mean_grad_gt_norm": 0.08495951257646084,
+        "mean_grad_kd_norm": 0.43712519854307175,
+        "norm_ratio_kd_over_gt": 5.145100122245559,
+        "lambda_for_equal_gradient": 0.19435967740965046,
+        "gate2_pass": false,
+        "gate2_reason": "gradient redundant (cosine=0.862 >= 0.85)",
+        "n_batches": 8
+      },
+      "verdict": "REJECT",
+      "verdict_reason": "Gate2 fail: gradient redundant (cosine=0.862 >= 0.85)",
+      "rank_score": -1.0
+    }
+  ],
+  "recommended": "vgg_relu3"
+}

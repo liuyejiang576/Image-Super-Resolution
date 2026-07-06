@@ -1,0 +1,102 @@
+[
+  {
+    "run_id": "fsrcnn_fix_clean_10k",
+    "model": "fsrcnn",
+    "config": "configs/exp/fsrcnn_fix_clean_10k.yaml",
+    "updates_target": 10000,
+    "epochs": 100,
+    "batch_size": 8,
+    "milestones": [
+      60,
+      85
+    ]
+  },
+  {
+    "run_id": "mobile_srnet_10k",
+    "model": "mobile_srnet",
+    "config": "configs/exp/mobile_srnet_10k.yaml",
+    "updates_target": 10000,
+    "epochs": 304,
+    "batch_size": 24,
+    "milestones": [
+      182,
+      258
+    ]
+  },
+  {
+    "run_id": "fsrcnn_fix_clean_20k",
+    "model": "fsrcnn",
+    "config": "configs/exp/fsrcnn_fix_clean_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 200,
+    "batch_size": 8,
+    "milestones": [
+      120,
+      170
+    ]
+  },
+  {
+    "run_id": "mobile_srnet_20k",
+    "model": "mobile_srnet",
+    "config": "configs/exp/mobile_srnet_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "milestones": [
+      364,
+      516
+    ]
+  },
+  {
+    "run_id": "mobile_srnet_kd0_10k",
+    "model": "mobile_srnet_kd",
+    "lambda_kd": 0.0,
+    "config": "configs/exp/mobile_srnet_kd0_10k.yaml",
+    "updates_target": 10000,
+    "epochs": 200,
+    "batch_size": 16,
+    "milestones": [
+      120,
+      170
+    ]
+  },
+  {
+    "run_id": "mobile_srnet_kd02_10k",
+    "model": "mobile_srnet_kd",
+    "lambda_kd": 0.2,
+    "config": "configs/exp/mobile_srnet_kd02_10k.yaml",
+    "updates_target": 10000,
+    "epochs": 200,
+    "batch_size": 16,
+    "milestones": [
+      120,
+      170
+    ]
+  },
+  {
+    "run_id": "mobile_srnet_kd0_20k",
+    "model": "mobile_srnet_kd",
+    "lambda_kd": 0.0,
+    "config": "configs/exp/mobile_srnet_kd0_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 400,
+    "batch_size": 16,
+    "milestones": [
+      240,
+      340
+    ]
+  },
+  {
+    "run_id": "mobile_srnet_kd02_20k",
+    "model": "mobile_srnet_kd",
+    "lambda_kd": 0.2,
+    "config": "configs/exp/mobile_srnet_kd02_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 400,
+    "batch_size": 16,
+    "milestones": [
+      240,
+      340
+    ]
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "paused_at": "2026-07-06T08:44:25.765625+08:00",
+  "runs": [
+    {
+      "run_id": "mobile_srnet_kd05_10k",
+      "name": "kd05",
+      "lambda_kd": 0.5,
+      "epoch": 154,
+      "target_epochs": 200,
+      "resume_from": "results/exp_runs/mobile_srnet_kd05_10k/checkpoints/latest.pt"
+    },
+    {
+      "run_id": "mobile_srnet_kd10_10k",
+      "name": "kd10",
+      "lambda_kd": 1.0,
+      "epoch": 155,
+      "target_epochs": 200,
+      "resume_from": "results/exp_runs/mobile_srnet_kd10_10k/checkpoints/latest.pt"
+    },
+    {
+      "run_id": "mobile_srnet_kd20_10k",
+      "name": "kd20",
+      "lambda_kd": 2.0,
+      "epoch": 154,
+      "target_epochs": 200,
+      "resume_from": "results/exp_runs/mobile_srnet_kd20_10k/checkpoints/latest.pt"
+    }
+  ]
+}

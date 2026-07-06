@@ -1,0 +1,35 @@
+{
+  "mobile_srnet": {
+    "model": "mobile_srnet",
+    "batch_size": 24,
+    "amp": true,
+    "workers": 8,
+    "steps_per_sec": 1.708835103108094,
+    "peak_mem_gb": 0.23875188827514648,
+    "oom": false,
+    "notes": "",
+    "run_id": 1
+  },
+  "fsrcnn_fix_clean": {
+    "model": "fsrcnn_fix_clean",
+    "batch_size": 8,
+    "amp": false,
+    "workers": 4,
+    "steps_per_sec": 2.966597526032738,
+    "peak_mem_gb": 0.09251642227172852,
+    "oom": false,
+    "notes": "",
+    "run_id": 5
+  },
+  "mobile_srnet_kd": {
+    "model": "mobile_srnet_kd",
+    "batch_size": 16,
+    "amp": true,
+    "workers": 8,
+    "steps_per_sec": 0.9726798764394474,
+    "peak_mem_gb": 0.7542462348937988,
+    "oom": false,
+    "notes": "",
+    "run_id": 11
+  }
+}

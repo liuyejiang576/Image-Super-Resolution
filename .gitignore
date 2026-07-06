@@ -7,13 +7,54 @@ __pycache__/
 .venv/
 venv/
 
-# Project artifacts
+# Project artifacts (large / local)
 /data
 /data/
-/results
-/results/
 checkpoints/
 logs/
+
+# Results: ignore contents by default; track small evidence bundle via exceptions
+/results/*
+!/results/MANIFEST.md
+!/results/final_report.md
+!/results/qualitative/
+!/results/qualitative/**
+!/results/latency_audit/
+!/results/latency_audit/**
+!/results/training_analysis/
+!/results/training_analysis/**
+!/results/exp_runs/
+/results/exp_runs/*
+!/results/exp_runs/*.json
+!/results/exp_runs/*.md
+!/results/exp_runs/fsrcnn_fix_clean_20k/
+/results/exp_runs/fsrcnn_fix_clean_20k/*
+!/results/exp_runs/fsrcnn_fix_clean_20k/benchmark_metrics.json
+!/results/exp_runs/fsrcnn_fix_clean_20k/profile.json
+!/results/exp_runs/mobile_srnet_20k/
+/results/exp_runs/mobile_srnet_20k/*
+!/results/exp_runs/mobile_srnet_20k/benchmark_metrics.json
+!/results/exp_runs/mobile_srnet_20k/profile.json
+!/results/exp_runs/mobile_srnet_plus_20k/
+/results/exp_runs/mobile_srnet_plus_20k/*
+!/results/exp_runs/mobile_srnet_plus_20k/benchmark_metrics.json
+!/results/exp_runs/mobile_srnet_plus_20k/profile.json
+!/results/exp_runs/mobile_srnet_kd0_20k/
+/results/exp_runs/mobile_srnet_kd0_20k/*
+!/results/exp_runs/mobile_srnet_kd0_20k/benchmark_metrics.json
+!/results/exp_runs/mobile_srnet_kd0_20k/profile.json
+!/results/exp_runs/mobile_srnet_kd02_20k/
+/results/exp_runs/mobile_srnet_kd02_20k/*
+!/results/exp_runs/mobile_srnet_kd02_20k/benchmark_metrics.json
+!/results/exp_runs/mobile_srnet_kd02_20k/profile.json
+
+# Never track checkpoints, logs, or archives
+**/*.pt
+**/*.pth
+**/*.ckpt
+**/train_log.jsonl
+results/_archive/
+results/_headline/
 
 # OS/editor
 .DS_Store

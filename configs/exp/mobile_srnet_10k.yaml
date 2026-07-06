@@ -1,0 +1,35 @@
+dataset:
+  train_hr_dir: data/div2k/DIV2K_train_HR
+  valid_hr_dir: data/div2k/DIV2K_valid_HR
+  scale: 4
+  hr_patch_size: 256
+  augment: true
+model:
+  type: mobile_srnet
+  num_channels: 3
+  feat: 40
+  num_blocks: 6
+train:
+  seed: 42
+  batch_size: 24
+  num_workers: 8
+  epochs: 304
+  learning_rate: 0.001
+  weight_decay: 0.0
+  milestones:
+  - 182
+  - 258
+  gamma: 0.5
+  amp: true
+  loss_type: mse
+  log_every: 50
+  max_train_steps_per_epoch: null
+validation:
+  batch_size: 1
+  num_workers: 2
+  max_images: 100
+checkpoint:
+  dir: results/exp_runs/mobile_srnet_10k/checkpoints
+  best_name: best.pt
+  latest_name: latest.pt
+  log_path: results/exp_runs/mobile_srnet_10k/train_log.jsonl

@@ -1,0 +1,9 @@
+{
+  "baseline_run_id": "mobile_srnet_20k",
+  "baseline_variant": "base",
+  "baseline_feat": 40,
+  "baseline_num_blocks": 6,
+  "baseline_val_psnr": 27.7994,
+  "baseline_avg_psnr_benchmarks": 27.159,
+  "source": "results/exp_runs/mobile_srnet_20k (fair-budget MSE, batch 24, seed 42)"
+}

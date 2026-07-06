@@ -1,0 +1,66 @@
+{
+  "d1_patch_quality": {
+    "kd0_20k": {
+      "mean_psnr_vs_hr": 29.45086030874602,
+      "median_psnr_vs_hr": 27.893608444665176,
+      "std_psnr": 7.0650489303463,
+      "n": 100
+    },
+    "kd02_20k": {
+      "mean_psnr_vs_hr": 29.436113860538534,
+      "median_psnr_vs_hr": 27.89408171913383,
+      "std_psnr": 7.036428542230588,
+      "n": 100
+    },
+    "mobile_srnet_20k": {
+      "mean_psnr_vs_hr": 29.410624575056723,
+      "median_psnr_vs_hr": 27.921145529244516,
+      "std_psnr": 6.83355096683431,
+      "n": 100
+    },
+    "teacher": {
+      "mean_psnr_vs_hr": 31.16506563684071,
+      "median_psnr_vs_hr": 29.626896829086196,
+      "std_psnr": 6.957507347061812,
+      "n": 100
+    },
+    "student_vs_teacher_psnr::kd0_20k": {
+      "mean": 35.26064639825182,
+      "median": 33.01660007150451
+    },
+    "student_vs_teacher_psnr::kd02_20k": {
+      "mean": 35.27059203680575,
+      "median": 33.02876285712917
+    },
+    "student_vs_teacher_psnr::mobile_srnet_20k": {
+      "mean": 34.92983215976199,
+      "median": 33.24858439677844
+    }
+  },
+  "d2_grad_alignment_kd0": {
+    "mean_cosine_grad_gt_vs_kd": 0.8767810662587484,
+    "median_cosine": 0.8873136043548584,
+    "std_cosine": 0.06921516169956048,
+    "mean_grad_gt_norm": 0.047318968921899796,
+    "mean_grad_kd_norm": 0.13160820305347443,
+    "ratio_kd_over_gt_norm": 2.7812990445902246,
+    "mean_loss_gt": 0.02732896525412798,
+    "mean_loss_kd": 0.01356226671487093,
+    "lambda_for_equal_gradient": 0.3595442215913652,
+    "n_batches": 16,
+    "n_params": 30208
+  },
+  "d2_grad_alignment_kd02": {
+    "mean_cosine_grad_gt_vs_kd": 0.606120174129804,
+    "median_cosine": 0.6057937145233154,
+    "std_cosine": 0.11260139786586928,
+    "mean_grad_gt_norm": 0.07000132246563832,
+    "mean_grad_kd_norm": 0.12566371199985346,
+    "ratio_kd_over_gt_norm": 1.7951619708547397,
+    "mean_loss_gt": 0.027643484994769096,
+    "mean_loss_kd": 0.013219878387947878,
+    "lambda_for_equal_gradient": 0.5570527987086674,
+    "n_batches": 16,
+    "n_params": 30208
+  }
+}

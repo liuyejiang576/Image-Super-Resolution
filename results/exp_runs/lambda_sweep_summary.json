@@ -1,0 +1,44 @@
+{
+  "sweep_10k": [
+    {
+      "run_id": "mobile_srnet_kd0_10k",
+      "lambda_kd": 0.0,
+      "avg_psnr": 26.76880121185731,
+      "avg_lpips": 0.18341214171610773,
+      "val_psnr_div2k": 27.48160647341038,
+      "status": "done"
+    },
+    {
+      "run_id": "mobile_srnet_kd02_10k",
+      "lambda_kd": 0.2,
+      "avg_psnr": 26.769786182185637,
+      "avg_lpips": 0.18403106757572718,
+      "val_psnr_div2k": 27.491518609224812,
+      "status": "done"
+    },
+    {
+      "run_id": "mobile_srnet_kd05_10k",
+      "lambda_kd": 0.5,
+      "avg_psnr": 26.759719383184045,
+      "avg_lpips": 0.18465059868592237,
+      "val_psnr_div2k": 27.48525104605203,
+      "status": "done"
+    },
+    {
+      "run_id": "mobile_srnet_kd10_10k",
+      "lambda_kd": 1.0,
+      "avg_psnr": 26.75906611265125,
+      "avg_lpips": 0.1842901280988008,
+      "val_psnr_div2k": 27.477782843200394,
+      "status": "done"
+    },
+    {
+      "run_id": "mobile_srnet_kd20_10k",
+      "lambda_kd": 2.0,
+      "avg_psnr": 26.758936860862743,
+      "avg_lpips": 0.18367010036616455,
+      "val_psnr_div2k": 27.491028556416914,
+      "status": "done"
+    }
+  ]
+}

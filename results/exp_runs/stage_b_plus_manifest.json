@@ -1,0 +1,16 @@
+[
+  {
+    "run_id": "mobile_srnet_plus_2k",
+    "model": "mobile_srnet",
+    "variant": "plus",
+    "feat": 64,
+    "num_blocks": 8,
+    "config": "configs/exp/mobile_srnet_plus_2k.yaml",
+    "updates_target": 2000,
+    "epochs": 61,
+    "batch_size": 24,
+    "milestones": [37, 52],
+    "loss_type": "mse",
+    "description": "Stage B capacity probe: MobileSRNet-Plus (64ch, 8 blocks) @ 2k updates"
+  }
+]

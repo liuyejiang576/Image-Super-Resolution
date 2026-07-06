@@ -51,7 +51,7 @@ class DIV2KPatchDataset(Dataset):
         self.scale = scale
         self.hr_patch_size = hr_patch_size
         self.augment = augment
-        self.rng = random.Random(seed)
+        self.seed = seed
         self.hr_paths = _list_png_files(self.hr_dir)
 
     def __len__(self) -> int:
@@ -63,25 +63,25 @@ class DIV2KPatchDataset(Dataset):
             raise ValueError(
                 f"Image {image.size} is smaller than patch {self.hr_patch_size}"
             )
-        left = self.rng.randint(0, width - self.hr_patch_size)
-        top = self.rng.randint(0, height - self.hr_patch_size)
+        left = random.randint(0, width - self.hr_patch_size)
+        top = random.randint(0, height - self.hr_patch_size)
         return image.crop((left, top, left + self.hr_patch_size, top + self.hr_patch_size))
 
     def _augment_pair(self, hr: Image.Image, lr: Image.Image) -> tuple[Image.Image, Image.Image]:
         if not self.augment:
             return hr, lr
-        if self.rng.random() < 0.5:
+        if random.random() < 0.5:
             hr = hr.transpose(Image.FLIP_LEFT_RIGHT)
             lr = lr.transpose(Image.FLIP_LEFT_RIGHT)
-        if self.rng.random() < 0.5:
+        if random.random() < 0.5:
             hr = hr.transpose(Image.FLIP_TOP_BOTTOM)
             lr = lr.transpose(Image.FLIP_TOP_BOTTOM)
-        # Apply random 0/90/180/270 degree rotations.
-        k = self.rng.randint(0, 3)
-        if k:
-            angle = 90 * k
-            hr = hr.rotate(angle)
-            lr = lr.rotate(angle)
+        # Use exact 90-degree transposes to avoid interpolation artifacts.
+        rotations = [None, Image.ROTATE_90, Image.ROTATE_180, Image.ROTATE_270]
+        op = rotations[random.randint(0, 3)]
+        if op is not None:
+            hr = hr.transpose(op)
+            lr = lr.transpose(op)
         return hr, lr
 
     def __getitem__(self, index: int) -> Dict[str, Tensor | str]:

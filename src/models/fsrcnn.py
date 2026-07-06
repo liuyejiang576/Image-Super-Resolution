@@ -44,10 +44,14 @@ class FSRCNN(nn.Module):
     def _initialize_weights(self) -> None:
         for module in self.modules():
             if isinstance(module, nn.Conv2d):
-                nn.init.normal_(module.weight, mean=0.0, std=0.001)
+                # FSRCNN uses variance-scaled init for feature extraction/mapping layers.
+                n = module.out_channels * module.kernel_size[0] * module.kernel_size[1]
+                std = (2.0 / n) ** 0.5
+                nn.init.normal_(module.weight, mean=0.0, std=std)
                 if module.bias is not None:
                     nn.init.zeros_(module.bias)
             elif isinstance(module, nn.ConvTranspose2d):
+                # Follow FSRCNN convention for deconvolution upsampler.
                 nn.init.normal_(module.weight, mean=0.0, std=0.001)
                 if module.bias is not None:
                     nn.init.zeros_(module.bias)

@@ -36,6 +36,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--epochs", type=int, default=None)
     parser.add_argument("--max-train-steps-per-epoch", type=int, default=None)
     parser.add_argument("--val-max-images", type=int, default=None)
+    parser.add_argument("--loss-type", choices=["l1", "mse"], default=None)
+    parser.add_argument(
+        "--resume-from",
+        default=None,
+        help="Path to checkpoint to resume training from.",
+    )
     return parser.parse_args()
 
 
@@ -106,6 +112,8 @@ def main() -> None:
         train_cfg["max_train_steps_per_epoch"] = args.max_train_steps_per_epoch
     if args.val_max_images is not None:
         val_cfg["max_images"] = args.val_max_images
+    if args.loss_type is not None:
+        train_cfg["loss_type"] = args.loss_type
 
     set_seed(train_cfg["seed"])
 
@@ -114,6 +122,8 @@ def main() -> None:
     )
     if args.device.startswith("cuda") and device.type == "cpu":
         print("CUDA not available, fallback to CPU.")
+    if device.type == "cuda":
+        torch.backends.cudnn.benchmark = True
 
     train_ds = DIV2KPatchDataset(
         hr_dir=PROJECT_ROOT / data_cfg["train_hr_dir"],
@@ -134,6 +144,7 @@ def main() -> None:
         num_workers=train_cfg["num_workers"],
         pin_memory=device.type == "cuda",
         drop_last=True,
+        persistent_workers=bool(train_cfg["num_workers"] > 0),
     )
     valid_loader = DataLoader(
         valid_ds,
@@ -150,7 +161,13 @@ def main() -> None:
         s=model_cfg["s"],
         m=model_cfg["m"],
     ).to(device)
-    criterion = nn.L1Loss()
+    loss_type = str(train_cfg.get("loss_type", "l1")).lower()
+    if loss_type == "mse":
+        criterion = nn.MSELoss()
+    elif loss_type == "l1":
+        criterion = nn.L1Loss()
+    else:
+        raise ValueError(f"Unsupported loss_type: {loss_type}")
     optimizer = Adam(
         model.parameters(),
         lr=train_cfg["learning_rate"],
@@ -170,8 +187,21 @@ def main() -> None:
 
     best_psnr = -1.0
     global_step = 0
+    start_epoch = 1
 
-    for epoch in range(1, train_cfg["epochs"] + 1):
+    if args.resume_from:
+        resume_path = PROJECT_ROOT / args.resume_from
+        resume_ckpt = torch.load(resume_path, map_location=device)
+        model.load_state_dict(resume_ckpt["model_state_dict"])
+        optimizer.load_state_dict(resume_ckpt["optimizer_state_dict"])
+        scheduler.load_state_dict(resume_ckpt["scheduler_state_dict"])
+        best_psnr = float(resume_ckpt.get("best_psnr", best_psnr))
+        start_epoch = int(resume_ckpt["epoch"]) + 1
+        # Approximate global step from resumed epoch.
+        global_step = int(resume_ckpt["epoch"]) * len(train_loader)
+        print(f"Resumed from {resume_path} at epoch {resume_ckpt['epoch']}")
+
+    for epoch in range(start_epoch, train_cfg["epochs"] + 1):
         model.train()
         running_loss = 0.0
         epoch_start = time.time()
@@ -220,6 +250,7 @@ def main() -> None:
             "val_psnr": metrics["val_psnr"],
             "lr": scheduler.get_last_lr()[0],
             "elapsed_sec": elapsed,
+            "loss_type": loss_type,
         }
         with log_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(log_row) + "\n")

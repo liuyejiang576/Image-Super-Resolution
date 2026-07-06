@@ -4,3 +4,7 @@ numpy
 Pillow
 PyYAML
 scikit-image
+lpips
+thop
+matplotlib
+timm

@@ -5,13 +5,19 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
+import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
 
 import numpy as np
 from PIL import Image
-from skimage.metrics import structural_similarity
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+SRC_DIR = PROJECT_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
+from utils.sr_metrics import compute_psnr, compute_ssim, crop_border, rgb_to_y_channel  # noqa: E402
 
 
 def parse_args() -> argparse.Namespace:
@@ -26,25 +32,6 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--save-json", default="results/bicubic_metrics.json")
     return parser.parse_args()
-
-
-def rgb_to_y_channel(rgb: np.ndarray) -> np.ndarray:
-    """Convert RGB uint8 image to Y channel in YCbCr space."""
-    rgb = rgb.astype(np.float64)
-    return (65.738 * rgb[..., 0] + 129.057 * rgb[..., 1] + 25.064 * rgb[..., 2]) / 256.0 + 16.0
-
-
-def crop_border(img: np.ndarray, border: int) -> np.ndarray:
-    if border <= 0:
-        return img
-    return img[border:-border, border:-border]
-
-
-def compute_psnr(img1: np.ndarray, img2: np.ndarray) -> float:
-    mse = np.mean((img1 - img2) ** 2)
-    if mse == 0:
-        return float("inf")
-    return 20.0 * math.log10(255.0 / math.sqrt(mse))
 
 
 def evaluate_dataset(dataset_dir: Path, crop: int) -> Tuple[float, float, int]:
@@ -70,16 +57,7 @@ def evaluate_dataset(dataset_dir: Path, crop: int) -> Tuple[float, float, int]:
         y_pred = crop_border(rgb_to_y_channel(bicubic_np), crop)
         y_true = crop_border(rgb_to_y_channel(hr_np), crop)
         psnrs.append(compute_psnr(y_pred, y_true))
-        ssims.append(
-            structural_similarity(
-                y_pred,
-                y_true,
-                data_range=255.0,
-                gaussian_weights=True,
-                sigma=1.5,
-                use_sample_covariance=False,
-            )
-        )
+        ssims.append(compute_ssim(y_pred, y_true))
 
     return float(np.mean(psnrs)), float(np.mean(ssims)), len(lr_paths)
 

@@ -1,0 +1,162 @@
+{
+  "runs": {
+    "fsrcnn_20k": {
+      "name": "fsrcnn_20k",
+      "epochs": 200,
+      "global_steps": 20000,
+      "best_val_psnr": 27.4818203710242,
+      "best_epoch": 197,
+      "final_val_psnr": 27.476865138638754,
+      "slope_last_50ep_db_per_1k_steps": 0.03731252797020755,
+      "still_improving_at_end": true
+    },
+    "mobile_base_20k": {
+      "name": "mobile_base_20k",
+      "epochs": 607,
+      "global_steps": 20031,
+      "best_val_psnr": 27.79937027832874,
+      "best_epoch": 607,
+      "final_val_psnr": 27.79937027832874,
+      "slope_last_50ep_db_per_1k_steps": 0.0025327612692708323,
+      "still_improving_at_end": true
+    },
+    "mobile_plus_20k": {
+      "name": "mobile_plus_20k",
+      "epochs": 607,
+      "global_steps": 20031,
+      "best_val_psnr": 27.936389979306288,
+      "best_epoch": 607,
+      "final_val_psnr": 27.936389979306288,
+      "slope_last_50ep_db_per_1k_steps": 0.005257525046880624,
+      "still_improving_at_end": true
+    },
+    "mobile_base_10k": {
+      "name": "mobile_base_10k",
+      "epochs": 304,
+      "global_steps": 10032,
+      "best_val_psnr": 27.571987872620134,
+      "best_epoch": 304,
+      "final_val_psnr": 27.571987872620134,
+      "slope_last_50ep_db_per_1k_steps": 0.0360419114820487,
+      "still_improving_at_end": true
+    },
+    "mobile_plus_2k": {
+      "name": "mobile_plus_2k",
+      "epochs": 61,
+      "global_steps": 2013,
+      "best_val_psnr": 27.16605214023386,
+      "best_epoch": 61,
+      "final_val_psnr": 27.16605214023386,
+      "slope_last_50ep_db_per_1k_steps": 0.46469717549790307,
+      "still_improving_at_end": true
+    },
+    "kd0_20k": {
+      "name": "kd0_20k",
+      "epochs": 400,
+      "global_steps": 20000,
+      "best_val_psnr": 27.75242409873543,
+      "best_epoch": 397,
+      "final_val_psnr": 27.748993647532266,
+      "slope_last_50ep_db_per_1k_steps": 0.004848797478712299,
+      "still_improving_at_end": true,
+      "final_train_loss_gt": 0.027705721110105514,
+      "final_train_loss_kd": 0.014419389963150024,
+      "lambda_kd": 0.0
+    },
+    "kd02_20k": {
+      "name": "kd02_20k",
+      "epochs": 400,
+      "global_steps": 20000,
+      "best_val_psnr": 27.745901878138966,
+      "best_epoch": 399,
+      "final_val_psnr": 27.74129597246067,
+      "slope_last_50ep_db_per_1k_steps": 0.004908115760353253,
+      "still_improving_at_end": true,
+      "final_train_loss_gt": 0.027434044480323792,
+      "final_train_loss_kd": 0.013615392372012139,
+      "lambda_kd": 0.2
+    },
+    "vgg3_kd0_2k": {
+      "name": "vgg3_kd0_2k",
+      "epochs": 40,
+      "global_steps": 2000,
+      "best_val_psnr": 27.060081984352276,
+      "best_epoch": 40,
+      "final_val_psnr": 27.060081984352276,
+      "slope_last_50ep_db_per_1k_steps": 1.5179197860559903,
+      "still_improving_at_end": true,
+      "final_train_loss_gt": 0.03018078900873661,
+      "final_train_loss_kd": 0.5892742508649826,
+      "lambda_kd": 0.0
+    },
+    "vgg3_kd01_2k": {
+      "name": "vgg3_kd01_2k",
+      "epochs": 40,
+      "global_steps": 2000,
+      "best_val_psnr": 27.056817049088473,
+      "best_epoch": 40,
+      "final_val_psnr": 27.056817049088473,
+      "slope_last_50ep_db_per_1k_steps": 1.2832155433309154,
+      "still_improving_at_end": true,
+      "final_train_loss_gt": 0.029947261996567248,
+      "final_train_loss_kd": 0.5541646718978882,
+      "lambda_kd": 0.01
+    }
+  },
+  "comparisons_at_matched_steps": [
+    {
+      "comparison": "Plus vs Base @ 2k",
+      "step": 2000,
+      "a_psnr": 27.163954861709353,
+      "b_psnr": 27.098540571230345,
+      "delta_db": 0.06541429047900849
+    },
+    {
+      "comparison": "Plus vs Base @ 20k",
+      "step": 20000,
+      "a_psnr": 27.913018782444862,
+      "b_psnr": 27.780623668287706,
+      "delta_db": 0.13239511415715555
+    },
+    {
+      "comparison": "VGG \u03bb=0.01 vs \u03bb=0 @ 2k",
+      "step": 2000,
+      "a_psnr": 27.056817049088473,
+      "b_psnr": 27.060081984352276,
+      "delta_db": -0.003264935263803892
+    },
+    {
+      "comparison": "Pixel KD \u03bb=0.2 vs \u03bb=0 @ 20k",
+      "step": 20000,
+      "a_psnr": 27.74129597246067,
+      "b_psnr": 27.748993647532266,
+      "delta_db": -0.007697675071597132
+    }
+  ],
+  "insights": [
+    "Plus beats Base by +0.137 dB at 20k val PSNR (27.936 vs 27.799).",
+    "Both Base and Plus plateau late \u2014 further gains need longer budget or recipe change, not just width.",
+    "Base 20k best checkpoint is at the final epoch \u2014 20k may still be under-budget for Base.",
+    "Pixel KD curves track together (\u03bb=0 slope 0.0048, \u03bb=0.2 slope 0.0049 dB/1k steps) \u2014 confirms null is structural, not early-stop noise.",
+    "VGG Stage B null: \u0394=-0.003 dB @ 2k \u2014 non-redundant gradient did not translate to val gain.",
+    "Plus leads Base early (+0.065 dB @ 2k) \u2014 Stage B probe correctly predicted 20k benefit."
+  ],
+  "recommendations": [
+    "Run benchmark eval + latency profile on Plus; promote Plus to headline if benchmarks confirm.",
+    "Optional: extend Base/Plus to 30k updates \u2014 curves still rising at epoch 607.",
+    "Do not invest in more SwinIR KD \u2014 pixel and VGG paths flat across all budgets.",
+    "Finalize report: RQ1=Plus/Base vs FSRCNN, RQ2=KD null (1 paragraph), RQ3=latency."
+  ],
+  "figures": [
+    "01_fair_budget_20k_architectures.png",
+    "02_capacity_base_vs_plus_early.png",
+    "02b_capacity_base_vs_plus_full.png",
+    "03_kd_lambda_sweep_curves.png",
+    "03b_kd_lambda_sweep_final_psnr.png",
+    "04_kd_loss_decomposition.png",
+    "05_kd_isolation_20k.png",
+    "06_vgg3_stage_b_2k.png",
+    "07_train_loss_vs_val_psnr.png",
+    "08_learning_rate_by_phase.png"
+  ]
+}

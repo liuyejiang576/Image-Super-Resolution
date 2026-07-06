@@ -1,0 +1,204 @@
+{
+  "FSRCNN": {
+    "dir": "fsrcnn_fix_clean",
+    "benchmark_metrics": {
+      "Set5": {
+        "images": 5,
+        "psnr": 29.17391402625126,
+        "ssim": 0.8233180390135196
+      },
+      "Set14": {
+        "images": 14,
+        "psnr": 26.597404830034616,
+        "ssim": 0.7276535762559798
+      },
+      "BSD100": {
+        "images": 100,
+        "psnr": 26.407443925450192,
+        "ssim": 0.6948905991137652
+      },
+      "Urban100": {
+        "images": 100,
+        "psnr": 23.64708022810326,
+        "ssim": 0.6809540785672364
+      }
+    },
+    "profile": {
+      "name": "fsrcnn_fix_clean",
+      "params": 24683,
+      "model_size_fp32_mb": 0.09415817260742188,
+      "flops_g": 7.4075472,
+      "latency_fp32_ms": 1.099853070008976,
+      "latency_fp16_ms": 3.196144640005514,
+      "lr_size": 180
+    },
+    "avg_psnr": 26.456460752459833,
+    "avg_ssim": 0.7317040732376252,
+    "avg_lpips": null,
+    "final_div2k_val_psnr": 27.668432596222004
+  },
+  "FSRCNN-Small": {
+    "dir": "fsrcnn_small",
+    "benchmark_metrics": {
+      "Set5": {
+        "images": 5,
+        "psnr": 28.9237388341143,
+        "ssim": 0.8166338864879796
+      },
+      "Set14": {
+        "images": 14,
+        "psnr": 26.449081779820837,
+        "ssim": 0.7227568094564615
+      },
+      "BSD100": {
+        "images": 100,
+        "psnr": 26.31373610480462,
+        "ssim": 0.6908735439382349
+      },
+      "Urban100": {
+        "images": 100,
+        "psnr": 23.53769205657745,
+        "ssim": 0.676037482400001
+      }
+    },
+    "profile": {
+      "name": "fsrcnn_small",
+      "params": 12019,
+      "model_size_fp32_mb": 0.045848846435546875,
+      "flops_g": 4.1656032,
+      "latency_fp32_ms": 0.8986178899976949,
+      "latency_fp16_ms": 1.718106770003942,
+      "lr_size": 180
+    },
+    "avg_psnr": 26.3060621938293,
+    "avg_ssim": 0.7265754305706693,
+    "avg_lpips": null,
+    "final_div2k_val_psnr": 27.304227207168186
+  },
+  "MobileSRNet": {
+    "dir": "mobile_srnet",
+    "benchmark_metrics": {
+      "Set5": {
+        "images": 5,
+        "psnr": 29.331544980505118,
+        "ssim": 0.8254222627992306,
+        "lpips": 0.1495526522397995
+      },
+      "Set14": {
+        "images": 14,
+        "psnr": 26.68995697134854,
+        "ssim": 0.7295515419213471,
+        "lpips": 0.1813020876475743
+      },
+      "BSD100": {
+        "images": 100,
+        "psnr": 26.420582072216448,
+        "ssim": 0.6959741752390428,
+        "lpips": 0.18801945965737105
+      },
+      "Urban100": {
+        "images": 100,
+        "psnr": 23.659737050190223,
+        "ssim": 0.6817078597500356,
+        "lpips": 0.25874873049557207
+      }
+    },
+    "profile": {
+      "name": "mobile_srnet",
+      "params": 30208,
+      "model_size_fp32_mb": 0.115234375,
+      "flops_g": 0.975888,
+      "latency_fp32_ms": 1.383365789988602,
+      "latency_fp16_ms": 1.0481982599958428,
+      "lr_size": 180
+    },
+    "avg_psnr": 26.525455268565082,
+    "avg_ssim": 0.733163959927414,
+    "avg_lpips": 0.19440573251007923,
+    "final_div2k_val_psnr": 28.015631172825454
+  },
+  "MobileSRNet+KD": {
+    "dir": "mobile_srnet_kd",
+    "benchmark_metrics": {
+      "Set5": {
+        "images": 5,
+        "psnr": 29.43050823619825,
+        "ssim": 0.8330169944691402,
+        "lpips": 0.14380840957164764
+      },
+      "Set14": {
+        "images": 14,
+        "psnr": 26.770570097212477,
+        "ssim": 0.7338036756392882,
+        "lpips": 0.1777747603399413
+      },
+      "BSD100": {
+        "images": 100,
+        "psnr": 26.45346646188009,
+        "ssim": 0.6974366888274462,
+        "lpips": 0.18400566231459378
+      },
+      "Urban100": {
+        "images": 100,
+        "psnr": 23.697148945002564,
+        "ssim": 0.6866799547323531,
+        "lpips": 0.25183319460600617
+      }
+    },
+    "profile": {
+      "name": "mobile_srnet_kd",
+      "params": 30208,
+      "model_size_fp32_mb": 0.115234375,
+      "flops_g": 0.975888,
+      "latency_fp32_ms": 1.5156657500119763,
+      "latency_fp16_ms": 0.9715348899771925,
+      "lr_size": 180
+    },
+    "avg_psnr": 26.587923435073346,
+    "avg_ssim": 0.737734328417057,
+    "avg_lpips": 0.18935550670804724,
+    "final_div2k_val_psnr": 28.16336951859442
+  },
+  "SwinIR": {
+    "dir": "swinir",
+    "benchmark_metrics": {
+      "Set5": {
+        "images": 5,
+        "psnr": 32.69203386489066,
+        "ssim": 0.9020813012629706,
+        "lpips": 0.07518793269991875
+      },
+      "Set14": {
+        "images": 14,
+        "psnr": 28.924152351601695,
+        "ssim": 0.7913311985949386,
+        "lpips": 0.1167645025998354
+      },
+      "BSD100": {
+        "images": 100,
+        "psnr": 27.82590426031759,
+        "ssim": 0.7461631466011229,
+        "lpips": 0.1296723590604961
+      },
+      "Urban100": {
+        "images": 100,
+        "psnr": 27.062330824134527,
+        "ssim": 0.8164154912466519,
+        "lpips": 0.11057286374270917
+      }
+    },
+    "profile": {
+      "name": "swinir_classical_x4",
+      "params": 11900199,
+      "model_size_fp32_mb": 45.39565658569336,
+      "flops_g": 417.796717824,
+      "latency_fp32_ms": 1951.9814278699957,
+      "latency_fp16_ms": null,
+      "lr_size": 180
+    },
+    "avg_psnr": 29.126105325236118,
+    "avg_ssim": 0.813997784426421,
+    "avg_lpips": 0.10804941452573985,
+    "final_div2k_val_psnr": null
+  }
+}

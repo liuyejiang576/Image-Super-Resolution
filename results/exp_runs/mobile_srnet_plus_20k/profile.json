@@ -1,0 +1,9 @@
+{
+  "name": "mobile_srnet_plus_20k",
+  "params": 66864,
+  "model_size_fp32_mb": 0.25506591796875,
+  "flops_g": 2.1627648,
+  "latency_fp32_ms": 2.3750789198675193,
+  "latency_fp16_ms": 0.7956758698855992,
+  "lr_size": 180
+}
