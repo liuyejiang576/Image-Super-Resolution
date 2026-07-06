@@ -7,7 +7,7 @@
       "lambda_kd": 0.5,
       "epoch": 154,
       "target_epochs": 200,
-      "resume_from": "results/exp_runs/mobile_srnet_kd05_10k/checkpoints/latest.pt"
+      "resume_from": "results/_inactive/exp_runs/mobile_srnet_kd05_10k/checkpoints/latest.pt"
     },
     {
       "run_id": "mobile_srnet_kd10_10k",

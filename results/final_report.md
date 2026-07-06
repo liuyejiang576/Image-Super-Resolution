@@ -129,4 +129,4 @@ Fair-budget 20k checkpoints; no KD column (baseline-era confound).
 > We design MobileSRNet — an LR-space CNN with depthwise-separable residual blocks and PixelShuffle upsampling — and show under fair training that it outperforms FSRCNN on standard benchmarks at substantially lower FLOPs. Capacity scaling to MobileSRNet-Plus (64ch, 8 blocks) adds a further +0.17 dB avg PSNR over Base while remaining ~3.4× below FSRCNN in arithmetic cost, with competitive FP16 latency (Plus 0.88 ms vs FSRCNN 1.35 ms @ LR 180×180). Offline SwinIR distillation was tested rigorously — pixel-output KD is gradient-redundant with HR supervision; VGG-feature KD passed pre-training gates but failed a short Stage B probe — and did not improve the student. The confirmed path to higher quality is architecture capacity, not KD. Finally, audited latency and FLOPs–latency scatter plots show that arithmetic savings do not uniformly translate to measured speed; precision mode and backend support jointly determine deployment efficiency.
 
 **Reference:** `results/training_analysis/training_analysis.md`  
-**Experiment log:** `progress.md`
+**Experiment log:** `_inactive/progress.md`

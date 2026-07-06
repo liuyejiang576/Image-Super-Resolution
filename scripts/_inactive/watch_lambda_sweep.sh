@@ -34,7 +34,7 @@ while true; do
   fi
 
   # also bail if the training processes are all gone (crash or completion)
-  alive=$(pgrep -c -f "train_mobile_srnet_kd.py --config configs/exp/mobile_srnet_kd(05|10|20)_10k" 2>/dev/null || echo 0)
+  alive=$(pgrep -c -f "train_mobile_srnet_kd.py --config configs/_inactive/exp/mobile_srnet_kd(05|10|20)_10k" 2>/dev/null || echo 0)
   if [ "$alive" -eq 0 ]; then
     echo "[$(date +%H:%M:%S)] no training procs alive; running analysis on whatever finished" | tee -a "$LOG"
     "$PY" scripts/analyze_lambda_sweep.py 2>&1 | tee -a "$LOG"

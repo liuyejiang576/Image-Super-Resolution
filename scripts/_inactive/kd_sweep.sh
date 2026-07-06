@@ -22,7 +22,7 @@ mkdir -p "$LOG_DIR"
 RUNS=("kd05:0.5" "kd10:1.0" "kd20:2.0")
 
 run_id()  { echo "mobile_srnet_${1}_10k"; }
-cfg_of()  { echo "configs/exp/mobile_srnet_${1}_10k.yaml"; }
+cfg_of()  { echo "configs/_inactive/exp/mobile_srnet_${1}_10k.yaml"; }
 ckpt_of() { echo "results/exp_runs/$(run_id "$1")/checkpoints/latest.pt"; }
 log_of()  { echo "$LOG_DIR/train_$(run_id "$1").log"; }
 
@@ -105,7 +105,7 @@ def last_epoch(n):
     lines = [l for l in f.read_text().splitlines() if l.strip()]
     return int(json.loads(lines[-1])["epoch"]) if lines else 0
 def target(n):
-    return int(yaml.safe_load(Path(f"configs/exp/mobile_srnet_{n}_10k.yaml").read_text())["train"]["epochs"])
+    return int(yaml.safe_load(Path(f"configs/_inactive/exp/mobile_srnet_{n}_10k.yaml").read_text())["train"]["epochs"])
 out = {
     "paused_at": datetime.datetime.now().astimezone().isoformat(),
     "runs": [

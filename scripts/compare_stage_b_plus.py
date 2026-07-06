@@ -9,7 +9,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REF_PATH = PROJECT_ROOT / "results/exp_runs/stage_b_plus_reference.json"
-PLUS_LOG = PROJECT_ROOT / "results/exp_runs/mobile_srnet_plus_2k/train_log.jsonl"
+PLUS_LOG = PROJECT_ROOT / "results/_inactive/exp_runs/mobile_srnet_plus_2k/train_log.jsonl"
 OUT_PATH = PROJECT_ROOT / "results/exp_runs/stage_b_plus_summary.json"
 
 

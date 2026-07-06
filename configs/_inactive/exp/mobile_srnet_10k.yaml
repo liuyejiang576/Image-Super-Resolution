@@ -9,23 +9,19 @@ model:
   num_channels: 3
   feat: 40
   num_blocks: 6
-teacher:
-  type: swinir_classical_x4
-  training_patch_size: 48
-distillation:
-  lambda_kd: 1.0
 train:
   seed: 42
-  batch_size: 16
-  num_workers: 4
-  epochs: 200
+  batch_size: 24
+  num_workers: 8
+  epochs: 304
   learning_rate: 0.001
   weight_decay: 0.0
   milestones:
-  - 120
-  - 170
+  - 182
+  - 258
   gamma: 0.5
   amp: true
+  loss_type: mse
   log_every: 50
   max_train_steps_per_epoch: null
 validation:
@@ -33,7 +29,7 @@ validation:
   num_workers: 2
   max_images: 100
 checkpoint:
-  dir: results/exp_runs/mobile_srnet_kd10_10k/checkpoints
+  dir: results/_inactive/exp_runs/mobile_srnet_10k/checkpoints
   best_name: best.pt
   latest_name: latest.pt
-  log_path: results/exp_runs/mobile_srnet_kd10_10k/train_log.jsonl
+  log_path: results/_inactive/exp_runs/mobile_srnet_10k/train_log.jsonl

@@ -7,9 +7,10 @@ Mobile-efficient 4× super-resolution course project: **MobileSRNet-Plus** beats
 | File | Role |
 |---|---|
 | `results/final_report.md` | Submission report (headline results) |
-| `results/MANIFEST.md` | Which runs/artifacts are active vs archived |
+| `results/MANIFEST.md` | Which runs/artifacts are active vs inactive |
 | `report_plan.md` | Experiment checklist (complete) |
-| `proposal.md`, `plan.md` | Original project docs |
+| `proposal.md` | Original proposal |
+| `_inactive/` | Superseded docs (`exp_plan.md`, `progress.md`, …) |
 | `docs/ablation_tracking.md` | Ablation notes |
 
 Master file registry (active/inactive across the whole `CV_project/` tree, **outside this git repo**): `../codebase.md`
@@ -72,11 +73,13 @@ Or symlink from `../data/` at the `CV_project` level.
 ## Repo layout
 
 ```
-configs/          Training configs (base + configs/exp/)
-scripts/          Training, eval, plotting, experiment runners
-scripts/_archive/ One-off sweep/launcher scripts (inactive)
-src/              Models (mobile_srnet, fsrcnn) and utilities
-results/          Local artifacts; see MANIFEST.md
-results/_archive/ Superseded runs (local only)
-results/_headline/ Symlinks to best checkpoints (local only)
+configs/            Active configs (`configs/exp/` = headline 20k runs)
+configs/_inactive/  Superseded configs (10k, 2k probes)
+scripts/            Training, eval, plotting, experiment runners
+scripts/_inactive/  One-off sweep/launcher scripts
+src/                Models (mobile_srnet, fsrcnn) and utilities
+results/            Local artifacts; see MANIFEST.md
+results/_inactive/  Superseded runs (local only)
+results/_headline/  Symlinks to best checkpoints (local only)
+_inactive/          Superseded root docs
 ```

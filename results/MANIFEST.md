@@ -1,6 +1,6 @@
 # Results manifest
 
-Single source of truth for which artifacts are **headline** (report-facing), **active** (supporting evidence), or **archived** (superseded but kept locally).
+Single source of truth for which artifacts are **headline** (report-facing), **active** (supporting evidence), or **inactive** (superseded but kept locally).
 
 Checkpoints (`.pt`) and training logs stay local and gitignored. Small JSON/PNG/MD evidence files listed below may be tracked in git per `.gitignore` exceptions.
 
@@ -18,7 +18,7 @@ Symlinks in `results/_headline/checkpoints/` point at the three `best.pt` files 
 
 ---
 
-## Active evidence (not archived)
+## Active evidence
 
 ### `exp_runs/` (headline + RQ2 null)
 
@@ -46,15 +46,21 @@ Symlinks in `results/_headline/checkpoints/` point at the three `best.pt` files 
 
 ---
 
-## Archived (`results/_archive/`)
+## Inactive configs (`configs/_inactive/`)
+
+Superseded experiment configs (10k budget, 2k probes). Active headline configs remain in `configs/exp/`.
+
+---
+
+## Inactive results (`results/_inactive/`)
 
 Moved here on 2026-07-06. Safe to delete if disk is tight; not cited in final report.
 
 | Location | Contents |
 |---|---|
-| `_archive/baseline_era/` | Pre fair-budget runs: `mobile_srnet`, `mobile_srnet_kd`, `fsrcnn*`, `kd_analysis`, early ablations |
-| `_archive/exp_runs/` | 10k runs, Plus/VGG3 2k probes, λ-sweep 10k extras, `kd_parallel_probe`, training logs |
-| `_archive/exp_runs/loose_logs/` | Launcher / watch / parallel logs from `exp_runs/` root |
+| `_inactive/baseline_era/` | Pre fair-budget runs: `mobile_srnet`, `mobile_srnet_kd`, `fsrcnn*`, `kd_analysis`, early ablations |
+| `_inactive/exp_runs/` | 10k runs, Plus/VGG3 2k probes, λ-sweep 10k extras, `kd_parallel_probe`, training logs |
+| `_inactive/exp_runs/loose_logs/` | Launcher / watch / parallel logs from `exp_runs/` root |
 
 ---
 

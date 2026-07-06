@@ -13,7 +13,7 @@ teacher:
   type: swinir_classical_x4
   training_patch_size: 48
 distillation:
-  lambda_kd: 0.5
+  lambda_kd: 2.0
 train:
   seed: 42
   batch_size: 16
@@ -33,7 +33,7 @@ validation:
   num_workers: 2
   max_images: 100
 checkpoint:
-  dir: results/exp_runs/mobile_srnet_kd05_10k/checkpoints
+  dir: results/_inactive/exp_runs/mobile_srnet_kd20_10k/checkpoints
   best_name: best.pt
   latest_name: latest.pt
-  log_path: results/exp_runs/mobile_srnet_kd05_10k/train_log.jsonl
+  log_path: results/_inactive/exp_runs/mobile_srnet_kd20_10k/train_log.jsonl

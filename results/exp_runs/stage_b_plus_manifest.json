@@ -5,7 +5,7 @@
     "variant": "plus",
     "feat": 64,
     "num_blocks": 8,
-    "config": "configs/exp/mobile_srnet_plus_2k.yaml",
+    "config": "configs/_inactive/exp/mobile_srnet_plus_2k.yaml",
     "updates_target": 2000,
     "epochs": 61,
     "batch_size": 24,

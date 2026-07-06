@@ -5,23 +5,27 @@ dataset:
   hr_patch_size: 256
   augment: true
 model:
+  type: mobile_srnet
   num_channels: 3
-  d: 56
-  s: 12
-  m: 4
+  feat: 40
+  num_blocks: 6
+teacher:
+  type: swinir_classical_x4
+  training_patch_size: 48
+distillation:
+  lambda_kd: 0.5
 train:
   seed: 42
-  batch_size: 8
+  batch_size: 16
   num_workers: 4
-  epochs: 100
+  epochs: 200
   learning_rate: 0.001
   weight_decay: 0.0
   milestones:
-  - 60
-  - 85
+  - 120
+  - 170
   gamma: 0.5
   amp: true
-  loss_type: mse
   log_every: 50
   max_train_steps_per_epoch: null
 validation:
@@ -29,7 +33,7 @@ validation:
   num_workers: 2
   max_images: 100
 checkpoint:
-  dir: results/exp_runs/fsrcnn_fix_clean_10k/checkpoints
+  dir: results/_inactive/exp_runs/mobile_srnet_kd05_10k/checkpoints
   best_name: best.pt
   latest_name: latest.pt
-  log_path: results/exp_runs/fsrcnn_fix_clean_10k/train_log.jsonl
+  log_path: results/_inactive/exp_runs/mobile_srnet_kd05_10k/train_log.jsonl

@@ -206,7 +206,7 @@ def plot_lambda_sweep(out_dir: Path) -> None:
     finals: list[tuple[float, float | None]] = []
     for lam in lambdas:
         rid = run_map[lam]
-        rows = load_log(rel_log("results/exp_runs", rid, "train_log.jsonl"))
+        rows = load_log(rel_log("results/_inactive/exp_runs", rid, "train_log.jsonl"))
         finals.append((lam, final_val(rows)))
         if rows:
             xs, ys = curve(rows, "global_step", "val_psnr")
@@ -283,12 +283,12 @@ def main() -> None:
         "fsrcnn_20k": load_log(rel_log("results/exp_runs/fsrcnn_fix_clean_20k/train_log.jsonl")),
         "mobile_base_20k": load_log(rel_log("results/exp_runs/mobile_srnet_20k/train_log.jsonl")),
         "mobile_plus_20k": load_log(rel_log("results/exp_runs/mobile_srnet_plus_20k/train_log.jsonl")),
-        "mobile_base_10k": load_log(rel_log("results/exp_runs/mobile_srnet_10k/train_log.jsonl")),
-        "mobile_plus_2k": load_log(rel_log("results/exp_runs/mobile_srnet_plus_2k/train_log.jsonl")),
+        "mobile_base_10k": load_log(rel_log("results/_inactive/exp_runs/mobile_srnet_10k/train_log.jsonl")),
+        "mobile_plus_2k": load_log(rel_log("results/_inactive/exp_runs/mobile_srnet_plus_2k/train_log.jsonl")),
         "kd0_20k": load_log(rel_log("results/exp_runs/mobile_srnet_kd0_20k/train_log.jsonl")),
         "kd02_20k": load_log(rel_log("results/exp_runs/mobile_srnet_kd02_20k/train_log.jsonl")),
-        "vgg3_kd0_2k": load_log(rel_log("results/exp_runs/mobile_srnet_vgg3_kd0_2k/train_log.jsonl")),
-        "vgg3_kd01_2k": load_log(rel_log("results/exp_runs/mobile_srnet_vgg3_kd01_2k/train_log.jsonl")),
+        "vgg3_kd0_2k": load_log(rel_log("results/_inactive/exp_runs/mobile_srnet_vgg3_kd0_2k/train_log.jsonl")),
+        "vgg3_kd01_2k": load_log(rel_log("results/_inactive/exp_runs/mobile_srnet_vgg3_kd01_2k/train_log.jsonl")),
     }
 
     print("Plotting training analysis figures...")

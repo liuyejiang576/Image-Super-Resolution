@@ -8,9 +8,9 @@ LOG_DIR=results/exp_runs/logs
 mkdir -p "$LOG_DIR"
 
 declare -a RUNS=(
-  "kd05:configs/exp/mobile_srnet_kd05_10k.yaml:0.5"
-  "kd10:configs/exp/mobile_srnet_kd10_10k.yaml:1.0"
-  "kd20:configs/exp/mobile_srnet_kd20_10k.yaml:2.0"
+  "kd05:configs/_inactive/exp/mobile_srnet_kd05_10k.yaml:0.5"
+  "kd10:configs/_inactive/exp/mobile_srnet_kd10_10k.yaml:1.0"
+  "kd20:configs/_inactive/exp/mobile_srnet_kd20_10k.yaml:2.0"
 )
 
 PIDS=()

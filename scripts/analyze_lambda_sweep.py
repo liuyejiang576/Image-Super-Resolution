@@ -29,8 +29,17 @@ SWEEP = [
 NEW_RUNS = {"mobile_srnet_kd05_10k", "mobile_srnet_kd10_10k", "mobile_srnet_kd20_10k"}
 
 
-def final_val_psnr(run_id: str) -> float | None:
-    log = PROJECT_ROOT / "results/exp_runs" / run_id / "train_log.jsonl"
+INACTIVE_EXP_RUNS = PROJECT_ROOT / "results/_inactive/exp_runs"
+EXP_RUNS = PROJECT_ROOT / "results/exp_runs"
+
+
+def run_dir(run_id: str, *, inactive: bool = False) -> Path:
+    root = INACTIVE_EXP_RUNS if inactive else EXP_RUNS
+    return root / run_id
+
+
+def final_val_psnr(run_id: str, *, inactive: bool = False) -> float | None:
+    log = run_dir(run_id, inactive=inactive) / "train_log.jsonl"
     if not log.exists():
         return None
     last = None
@@ -39,9 +48,10 @@ def final_val_psnr(run_id: str) -> float | None:
     return last["val_psnr"] if last else None
 
 
-def benchmark_run(run_id: str) -> dict:
-    ckpt = PROJECT_ROOT / "results/exp_runs" / run_id / "checkpoints/best.pt"
-    out_json = PROJECT_ROOT / "results/exp_runs" / run_id / "benchmark_metrics.json"
+def benchmark_run(run_id: str, *, inactive: bool = True) -> dict:
+    base = run_dir(run_id, inactive=inactive)
+    ckpt = base / "checkpoints/best.pt"
+    out_json = base / "benchmark_metrics.json"
     if not ckpt.exists():
         return {"status": "no_checkpoint"}
     cmd = [

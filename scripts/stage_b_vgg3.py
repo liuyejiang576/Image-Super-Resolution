@@ -229,7 +229,7 @@ def cmd_pause(dry_run: bool) -> None:
         print(f"Stopping launcher (pids: {' '.join(lp)})...")
         kill_pids(lp)
 
-    print("\nPaused. Checkpoints at results/exp_runs/mobile_srnet_vgg3_kd*_2k/checkpoints/latest.pt")
+    print("\nPaused. Checkpoints at results/_inactive/exp_runs/mobile_srnet_vgg3_kd*_2k/checkpoints/latest.pt")
     print("Resume: python scripts/stage_b_vgg3.py resume")
 
 

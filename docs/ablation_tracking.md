@@ -19,7 +19,7 @@ Model profile:
 
 ## Experiment B: Small Model (FSRCNN-small)
 
-- Config: `configs/train_fsrcnn_small.yaml`
+- Config: `configs/_inactive/train_fsrcnn_small.yaml`
 - Status: running
 - Goal: compare quality-efficiency trade-off vs baseline.
 

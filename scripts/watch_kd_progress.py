@@ -37,7 +37,7 @@ def run_id(name: str) -> str:
 
 
 def cfg_path(name: str) -> Path:
-    return Path(f"configs/exp/mobile_srnet_{name}_10k.yaml")
+    return Path(f"configs/_inactive/exp/mobile_srnet_{name}_10k.yaml")
 
 
 def log_path(name: str) -> Path:

@@ -4,7 +4,7 @@ set -euo pipefail
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${PROJECT_ROOT}"
 
-TRAIN_PATTERN="scripts/train_fsrcnn.py --config configs/train_fsrcnn_small.yaml"
+TRAIN_PATTERN="scripts/train_fsrcnn.py --config configs/_inactive/train_fsrcnn_small.yaml"
 CHECK_INTERVAL_SEC=30
 MAX_WAIT_MINUTES="${MAX_WAIT_MINUTES:-720}"
 MAX_WAIT_SEC=$((MAX_WAIT_MINUTES * 60))

@@ -53,7 +53,7 @@ logs/
 **/*.pth
 **/*.ckpt
 **/train_log.jsonl
-results/_archive/
+results/_inactive/
 results/_headline/
 
 # OS/editor
