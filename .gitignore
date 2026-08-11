@@ -31,8 +31,6 @@ scripts/prescreen_dual_plain.py
 scripts/check_dual_plain_fuse.py
 configs/exp/dual_stream_c20n5_2k.yaml
 configs/exp/plain_c20n5_2k.yaml
-results/exp_runs/dual_plain_2k_manifest.json
-results/exp_runs/b4_dual_plain_*.json
 deploy/artifacts/ncnn/dual_*.param
 deploy/artifacts/ncnn/plain_c20n5_*.param
 
@@ -49,6 +47,9 @@ deploy/artifacts/ncnn/plain_c20n5_*.param
 /results/exp_runs/*
 !/results/exp_runs/*.json
 !/results/exp_runs/*.md
+# Re-hide Dual/Plain JSON after the *.json allowlist
+/results/exp_runs/dual_plain_2k_manifest.json
+/results/exp_runs/b4_dual_plain_*.json
 !/results/exp_runs/fsrcnn_fix_clean_20k/
 /results/exp_runs/fsrcnn_fix_clean_20k/*
 !/results/exp_runs/fsrcnn_fix_clean_20k/benchmark_metrics.json
