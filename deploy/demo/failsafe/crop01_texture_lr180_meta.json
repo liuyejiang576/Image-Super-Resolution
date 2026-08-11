@@ -1,0 +1,28 @@
+{
+  "label": "PECSR",
+  "model_id": "sepres_v2_c16n10",
+  "device": "V2419A",
+  "backend": "NCNN Vulkan FP16",
+  "preset": "audit_180",
+  "lr_w": 180,
+  "lr_h": 180,
+  "latency_ms": 17.4502,
+  "live": false,
+  "ncnn_param": "deploy/artifacts/ncnn/sepres_v2_c16n10_fused_audit_180_smoke.param",
+  "result": {
+    "mode": "infer",
+    "in": "/data/local/tmp/sr_bench/demo/in.png",
+    "out": "/data/local/tmp/sr_bench/demo/out.png",
+    "in_blob": "in0",
+    "out_blob": "out0",
+    "input_w": 180,
+    "input_h": 180,
+    "output_w": 720,
+    "output_h": 720,
+    "warmup": 1,
+    "fp16": true,
+    "vulkan": true,
+    "latency_ms": 17.4502
+  },
+  "note": "pre-recorded from on-device run"
+}

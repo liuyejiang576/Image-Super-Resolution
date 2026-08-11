@@ -70,11 +70,34 @@ def main() -> None:
 
     train_from_manifest(PROJECT_ROOT / "results/exp_runs/fair_budget_manifest.json")
 
+    # Figures / latency: use report/plot (lab copies live under scripts/_inactive/lab_plot_dup/)
+    report_plot = PROJECT_ROOT.parent / "report" / "plot"
     report_steps = [
-        ("audit_latency_180", [PYTHON, "scripts/audit_latency.py", "--lr-h", "180", "--lr-w", "180"], False),
-        ("audit_latency_720p", [PYTHON, "scripts/audit_latency.py", "--lr-h", "180", "--lr-w", "320", "--output", "results/latency_audit/latency_audit_320x180.json"], False),
-        ("kd_per_image", [PYTHON, "scripts/kd_per_image_analysis.py"], False),
-        ("build_final_report", [PYTHON, "scripts/build_final_report.py"], False),
+        (
+            "audit_latency_180",
+            [PYTHON, str(report_plot / "audit_latency.py"), "--lr-h", "180", "--lr-w", "180"],
+            False,
+        ),
+        (
+            "audit_latency_720p",
+            [
+                PYTHON,
+                str(report_plot / "audit_latency.py"),
+                "--lr-h",
+                "180",
+                "--lr-w",
+                "320",
+                "--output",
+                str(PROJECT_ROOT / "results/latency_audit/latency_audit_320x180.json"),
+            ],
+            False,
+        ),
+        # KD per-image: optional regen only
+        (
+            "kd_per_image",
+            [PYTHON, "scripts/_inactive/kd_diag/kd_per_image_analysis.py"],
+            False,
+        ),
     ]
     for name, cmd, req in report_steps:
         run_step(name, cmd, req)

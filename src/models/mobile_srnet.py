@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import copy
+
+import torch
 import torch.nn as nn
 
 
@@ -18,6 +21,60 @@ class DepthwiseSeparableBlock(nn.Module):
 
     def forward(self, x):
         return x + self.conv(x)
+
+
+class FusedResidualBlock(nn.Module):
+    """Algebraically fused DW+PW → dense 3×3, then ReLU6 (same residual form)."""
+
+    def __init__(self, channels: int) -> None:
+        super().__init__()
+        self.conv = nn.Sequential(
+            nn.Conv2d(channels, channels, kernel_size=3, padding=1, bias=False),
+            nn.ReLU6(inplace=True),
+        )
+
+    def forward(self, x):
+        return x + self.conv(x)
+
+
+def fuse_dw_pw_to_dense(dw: nn.Conv2d, pw: nn.Conv2d) -> nn.Conv2d:
+    """Fold depthwise 3×3 + pointwise 1×1 (no mid-activation) into one dense 3×3.
+
+    K[o, i, u, v] = P[o, i] * D[i, u, v]
+    """
+    if dw.groups != dw.in_channels:
+        raise ValueError("dw must be depthwise (groups == in_channels)")
+    if dw.bias is not None or pw.bias is not None:
+        raise ValueError("fuse assumes bias-free DW and PW")
+    d = dw.weight.detach()  # [C, 1, 3, 3]
+    p = pw.weight.detach()  # [C, C, 1, 1]
+    # [O, I, 1, 1] * [1, I, 3, 3] -> [O, I, 3, 3]
+    k = p * d.squeeze(1).unsqueeze(0)
+    fused = nn.Conv2d(
+        dw.in_channels,
+        pw.out_channels,
+        kernel_size=dw.kernel_size,
+        padding=dw.padding,
+        bias=False,
+    )
+    fused.weight.data.copy_(k)
+    return fused
+
+
+def fuse_mobile_srnet(model: MobileSRNet) -> MobileSRNet:
+    """Return a copy of MobileSRNet with body blocks folded to dense 3×3."""
+    fused = copy.deepcopy(model)
+    new_blocks: list[nn.Module] = []
+    for block in fused.body:
+        if not isinstance(block, DepthwiseSeparableBlock):
+            raise TypeError(f"expected DepthwiseSeparableBlock, got {type(block)}")
+        dw, pw, _relu = block.conv[0], block.conv[1], block.conv[2]
+        channels = dw.in_channels
+        fb = FusedResidualBlock(channels)
+        fb.conv[0] = fuse_dw_pw_to_dense(dw, pw)
+        new_blocks.append(fb)
+    fused.body = nn.Sequential(*new_blocks)
+    return fused
 
 
 class MobileSRNet(nn.Module):

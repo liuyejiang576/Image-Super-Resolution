@@ -1,0 +1,3 @@
+# Deployment build artifacts (local only)
+deploy/artifacts/
+deploy/android/sr_bench/build/

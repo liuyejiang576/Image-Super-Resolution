@@ -1,0 +1,75 @@
+{
+  "gate": "B4-Gate0-model-fuse-budget",
+  "candidates": [
+    {
+      "id": "v2_a",
+      "config": "configs/exp/sepres_v2_c16n8_20k.yaml",
+      "num_channel": 16,
+      "num_block": 8,
+      "output_shape": [
+        2,
+        3,
+        192,
+        192
+      ],
+      "eval_vs_fused_max_abs": 0.0,
+      "fused_convs": 10,
+      "fused_params": 26096,
+      "conv_macs_lr180": 835142400,
+      "expected": {
+        "fused_convs": 10,
+        "params": 26096,
+        "conv_macs_lr180": 835142400
+      },
+      "pass": true,
+      "errors": []
+    },
+    {
+      "id": "v2_b",
+      "config": "configs/exp/sepres_v2_c16n10_20k.yaml",
+      "num_channel": 16,
+      "num_block": 10,
+      "output_shape": [
+        2,
+        3,
+        192,
+        192
+      ],
+      "eval_vs_fused_max_abs": 0.0,
+      "fused_convs": 12,
+      "fused_params": 30768,
+      "conv_macs_lr180": 984441600,
+      "expected": {
+        "fused_convs": 12,
+        "params": 30768,
+        "conv_macs_lr180": 984441600
+      },
+      "pass": true,
+      "errors": []
+    },
+    {
+      "id": "v2_c",
+      "config": "configs/exp/sepres_v2_c20n6_20k.yaml",
+      "num_channel": 20,
+      "num_block": 6,
+      "output_shape": [
+        2,
+        3,
+        192,
+        192
+      ],
+      "eval_vs_fused_max_abs": 0.0,
+      "fused_convs": 8,
+      "fused_params": 31088,
+      "conv_macs_lr180": 997272000,
+      "expected": {
+        "fused_convs": 8,
+        "params": 31088,
+        "conv_macs_lr180": 997272000
+      },
+      "pass": true,
+      "errors": []
+    }
+  ],
+  "all_pass": true
+}

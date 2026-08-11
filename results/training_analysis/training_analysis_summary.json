@@ -101,6 +101,36 @@
       "final_train_loss_gt": 0.029947261996567248,
       "final_train_loss_kd": 0.5541646718978882,
       "lambda_kd": 0.01
+    },
+    "fsrcnn_30k": {
+      "name": "fsrcnn_30k",
+      "epochs": 300,
+      "global_steps": 30000,
+      "best_val_psnr": 27.569762370277317,
+      "best_epoch": 297,
+      "final_val_psnr": 27.48847893206196,
+      "slope_last_50ep_db_per_1k_steps": 0.006089019670517417,
+      "still_improving_at_end": false
+    },
+    "mobile_base_30k": {
+      "name": "mobile_base_30k",
+      "epochs": 910,
+      "global_steps": 30030,
+      "best_val_psnr": 27.837865296437954,
+      "best_epoch": 907,
+      "final_val_psnr": 27.8362695235787,
+      "slope_last_50ep_db_per_1k_steps": 0.005498726944090643,
+      "still_improving_at_end": true
+    },
+    "mobile_plus_30k": {
+      "name": "mobile_plus_30k",
+      "epochs": 910,
+      "global_steps": 30030,
+      "best_val_psnr": 27.98511963164472,
+      "best_epoch": 892,
+      "final_val_psnr": 27.97084519674533,
+      "slope_last_50ep_db_per_1k_steps": 0.0040399125487288025,
+      "still_improving_at_end": false
     }
   },
   "comparisons_at_matched_steps": [
@@ -133,30 +163,36 @@
       "delta_db": -0.007697675071597132
     }
   ],
+  "kd_lambda_sweep_spread_db_10k": 0.013856790889605008,
   "insights": [
     "Plus beats Base by +0.137 dB at 20k val PSNR (27.936 vs 27.799).",
     "Both Base and Plus plateau late \u2014 further gains need longer budget or recipe change, not just width.",
     "Base 20k best checkpoint is at the final epoch \u2014 20k may still be under-budget for Base.",
+    "FSRCNN 30k continuation: +0.088 dB DIV2K-valid vs 20k best (27.570 dB).",
+    "Base 30k continuation: +0.038 dB DIV2K-valid vs 20k best (27.838 dB).",
+    "Plus 30k continuation: +0.049 dB DIV2K-valid vs 20k best (27.985 dB).",
     "Pixel KD curves track together (\u03bb=0 slope 0.0048, \u03bb=0.2 slope 0.0049 dB/1k steps) \u2014 confirms null is structural, not early-stop noise.",
     "VGG Stage B null: \u0394=-0.003 dB @ 2k \u2014 non-redundant gradient did not translate to val gain.",
     "Plus leads Base early (+0.065 dB @ 2k) \u2014 Stage B probe correctly predicted 20k benefit."
   ],
   "recommendations": [
     "Run benchmark eval + latency profile on Plus; promote Plus to headline if benchmarks confirm.",
-    "Optional: extend Base/Plus to 30k updates \u2014 curves still rising at epoch 607.",
+    "30k continuation completed \u2014 gains are modest (+0.04\u20130.09 dB benchmarks); fair-budget 20k remains primary comparison.",
     "Do not invest in more SwinIR KD \u2014 pixel and VGG paths flat across all budgets.",
     "Finalize report: RQ1=Plus/Base vs FSRCNN, RQ2=KD null (1 paragraph), RQ3=latency."
   ],
   "figures": [
-    "01_fair_budget_20k_architectures.png",
+    "01_architectures_30k.png",
     "02_capacity_base_vs_plus_early.png",
-    "02b_capacity_base_vs_plus_full.png",
+    "02b_capacity_base_vs_plus_30k.png",
     "03_kd_lambda_sweep_curves.png",
     "03b_kd_lambda_sweep_final_psnr.png",
     "04_kd_loss_decomposition.png",
     "05_kd_isolation_20k.png",
     "06_vgg3_stage_b_2k.png",
     "07_train_loss_vs_val_psnr.png",
-    "08_learning_rate_by_phase.png"
+    "08_learning_rate_by_phase.png",
+    "09_arch_30k_stability.png",
+    "09_arch_30k_tail_zoom.png"
   ]
 }

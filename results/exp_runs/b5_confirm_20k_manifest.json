@@ -1,0 +1,82 @@
+[
+  {
+    "run_id": "sepres_v2_c16n10_20k",
+    "model": "sepres_v2",
+    "variant": "PECSR_s42",
+    "seed": 42,
+    "config": "configs/exp/sepres_v2_c16n10_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "loss_type": "mse",
+    "train_script": "train_sepres_v2.py",
+    "status_hint": "already_done_reuse",
+    "description": "B5 seed 42 PECSR — reuse existing freeze_ref run"
+  },
+  {
+    "run_id": "sepres_v2_c16n10_20k_s123",
+    "model": "sepres_v2",
+    "variant": "PECSR_s123",
+    "seed": 123,
+    "config": "configs/exp/sepres_v2_c16n10_20k_s123.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "loss_type": "mse",
+    "train_script": "train_sepres_v2.py",
+    "description": "B5 seed 123 PECSR"
+  },
+  {
+    "run_id": "sepres_v2_c16n10_20k_s2026",
+    "model": "sepres_v2",
+    "variant": "PECSR_s2026",
+    "seed": 2026,
+    "config": "configs/exp/sepres_v2_c16n10_20k_s2026.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "loss_type": "mse",
+    "train_script": "train_sepres_v2.py",
+    "description": "B5 seed 2026 PECSR"
+  },
+  {
+    "run_id": "ecbsr_m10c16_20k",
+    "model": "ecbsr",
+    "variant": "ECBSR_s42",
+    "seed": 42,
+    "config": "configs/exp/ecbsr_m10c16_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "loss_type": "mse",
+    "train_script": "train_ecbsr.py",
+    "status_hint": "already_done_reuse",
+    "description": "B5 seed 42 ECBSR — reuse existing B3 run"
+  },
+  {
+    "run_id": "ecbsr_m10c16_20k_s123",
+    "model": "ecbsr",
+    "variant": "ECBSR_s123",
+    "seed": 123,
+    "config": "configs/exp/ecbsr_m10c16_20k_s123.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "loss_type": "mse",
+    "train_script": "train_ecbsr.py",
+    "description": "B5 seed 123 ECBSR"
+  },
+  {
+    "run_id": "ecbsr_m10c16_20k_s2026",
+    "model": "ecbsr",
+    "variant": "ECBSR_s2026",
+    "seed": 2026,
+    "config": "configs/exp/ecbsr_m10c16_20k_s2026.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "loss_type": "mse",
+    "train_script": "train_ecbsr.py",
+    "description": "B5 seed 2026 ECBSR"
+  }
+]

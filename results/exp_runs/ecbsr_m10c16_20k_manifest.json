@@ -1,0 +1,19 @@
+{
+  "run_id": "ecbsr_m10c16_20k",
+  "task": "B3",
+  "model": "ecbsr",
+  "variant": "M10C16",
+  "config": "configs/exp/ecbsr_m10c16_20k.yaml",
+  "updates_target": 20000,
+  "epochs": 607,
+  "batch_size": 24,
+  "steps_per_epoch": 33,
+  "milestones": [
+    364,
+    516
+  ],
+  "protocol": "fair 20k updates, bs=24 (same as MobileSRNet 20k)",
+  "train_script": "scripts/train_ecbsr.py",
+  "fuse": "models.ecbsr.fuse_ecbsr \u2192 dense 3x3 deploy graph",
+  "status": "implemented; train after A1a GPU free"
+}

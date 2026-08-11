@@ -1,0 +1,17 @@
+[
+  {
+    "run_id": "ecbsr_m10c16_20k",
+    "model": "ecbsr",
+    "variant": "M10C16",
+    "num_block": 10,
+    "num_channel": 16,
+    "config": "configs/exp/ecbsr_m10c16_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "milestones": [364, 516],
+    "loss_type": "mse",
+    "train_script": "train_ecbsr.py",
+    "description": "B3: ECBSR-M10C16 fair 20k (bs=24, same updates as MobileSRNet)"
+  }
+]

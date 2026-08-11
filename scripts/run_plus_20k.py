@@ -83,7 +83,7 @@ def main() -> None:
             sys.exit(proc.returncode)
         print(f"[done] {run_id}")
 
-    print("\nPlus 20k complete. Run eval on checkpoints and update final_report.md.")
+    print("\nPlus 20k complete. Eval checkpoints, then sync per ../report/SYNC.md (experiments.md + metrics JSON).")
 
 
 if __name__ == "__main__":

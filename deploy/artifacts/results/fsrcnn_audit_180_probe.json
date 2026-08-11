@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-07-11T23:07:31.336913+08:00",
+  "task": "fsrcnn_audit_180_probe",
+  "protocol": {
+    "lr_w": 180,
+    "lr_h": 180,
+    "warmup": 50,
+    "iters": 300,
+    "backend": "ncnn_vulkan_fp16"
+  },
+  "result": {
+    "param": "/data/local/tmp/sr_bench/models/fsrcnn_deploy_720p.param",
+    "bin": "/data/local/tmp/sr_bench/models/fsrcnn_deploy_720p.bin",
+    "in_blob": "in0",
+    "out_blob": "out0",
+    "input_w": 180,
+    "input_h": 180,
+    "warmup": 50,
+    "iters": 300,
+    "fp16": true,
+    "vulkan": true,
+    "threads": 4,
+    "median_ms": 19.2208,
+    "p90_ms": 21.7091,
+    "fps": 52.03,
+    "peak_memory_kb": 100760,
+    "model_id": "fsrcnn",
+    "label": "FSRCNN"
+  }
+}

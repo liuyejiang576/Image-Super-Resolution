@@ -1,0 +1,150 @@
+{
+  "artifact": "b5_kd_stageb",
+  "date": "2026-07-12",
+  "protocol": "PECSR C16N10; SwinIR classical x4 teacher; Charbonnier GT + KD; ~2k updates (bs=16, 40 ep); seed 42; matched \u03bb=0 control per method; NOT comparable to MSE 20k table",
+  "pairs": {
+    "pixel_charbonnier": {
+      "lambda_kd": 0.2,
+      "off": {
+        "run_id": "pecsr_pixel_kd0_2k",
+        "best_val_psnr": 24.744912987106332,
+        "best_val_epoch": 39,
+        "avg_psnr": 24.462455013691823,
+        "avg_ssim": 0.722577648031947,
+        "avg_lpips": 0.22357962607938264,
+        "per_dataset": {
+          "Set5": {
+            "psnr": 25.293607169139978,
+            "ssim": 0.8093938872566545,
+            "lpips": 0.20712223649024963
+          },
+          "Set14": {
+            "psnr": 23.89526749506791,
+            "ssim": 0.7146549972211476,
+            "lpips": 0.22982666747910635
+          },
+          "BSD100": {
+            "psnr": 25.390977859748418,
+            "ssim": 0.6886626890401044,
+            "lpips": 0.1981397393345833
+          },
+          "Urban100": {
+            "psnr": 23.26996753081099,
+            "ssim": 0.6775990186098818,
+            "lpips": 0.2592298610135913
+          }
+        }
+      },
+      "on": {
+        "run_id": "pecsr_pixel_kd02_2k",
+        "best_val_psnr": 25.052306238738687,
+        "best_val_epoch": 39,
+        "avg_psnr": 24.971821143240966,
+        "avg_ssim": 0.7109053242130987,
+        "avg_lpips": 0.21552792814294144,
+        "per_dataset": {
+          "Set5": {
+            "psnr": 26.389411942524344,
+            "ssim": 0.7839188894880446,
+            "lpips": 0.19597787857055665
+          },
+          "Set14": {
+            "psnr": 24.49376882177474,
+            "ssim": 0.6991741173128087,
+            "lpips": 0.21599482319184712
+          },
+          "BSD100": {
+            "psnr": 25.725610311805994,
+            "ssim": 0.6851853016788801,
+            "lpips": 0.1896874623373151
+          },
+          "Urban100": {
+            "psnr": 23.278493496858786,
+            "ssim": 0.6753429883726615,
+            "lpips": 0.2604515484720469
+          }
+        }
+      },
+      "delta_on_minus_off": {
+        "avg_psnr": 0.509366129549143,
+        "avg_ssim": -0.011672323818848307,
+        "avg_lpips": -0.008051697936441199,
+        "best_val_psnr": 0.3073932516323552
+      }
+    },
+    "vgg_relu3": {
+      "lambda_kd": 0.01,
+      "off": {
+        "run_id": "pecsr_vgg3_kd0_2k",
+        "best_val_psnr": 24.653078415865963,
+        "best_val_epoch": 35,
+        "avg_psnr": 24.471599290822148,
+        "avg_ssim": 0.7213325040655786,
+        "avg_lpips": 0.22407384024267749,
+        "per_dataset": {
+          "Set5": {
+            "psnr": 25.594205326903584,
+            "ssim": 0.808318793612905,
+            "lpips": 0.20759020149707794
+          },
+          "Set14": {
+            "psnr": 23.87062061089652,
+            "ssim": 0.7148147099756524,
+            "lpips": 0.23145781510642596
+          },
+          "BSD100": {
+            "psnr": 25.228122295101098,
+            "ssim": 0.6874250334584321,
+            "lpips": 0.196730633713305
+          },
+          "Urban100": {
+            "psnr": 23.193448930387387,
+            "ssim": 0.6747714792153248,
+            "lpips": 0.2605167106539011
+          }
+        }
+      },
+      "on": {
+        "run_id": "pecsr_vgg3_kd01_2k",
+        "best_val_psnr": 24.61303752973762,
+        "best_val_epoch": 40,
+        "avg_psnr": 24.338243045670517,
+        "avg_ssim": 0.7237944242628258,
+        "avg_lpips": 0.22503860241733492,
+        "per_dataset": {
+          "Set5": {
+            "psnr": 25.321888816898458,
+            "ssim": 0.8129863784470718,
+            "lpips": 0.2084454759955406
+          },
+          "Set14": {
+            "psnr": 23.67154411648257,
+            "ssim": 0.7167304116514494,
+            "lpips": 0.23378533124923706
+          },
+          "BSD100": {
+            "psnr": 25.210314891631583,
+            "ssim": 0.6877223064102893,
+            "lpips": 0.1972477227076888
+          },
+          "Urban100": {
+            "psnr": 23.14922435766946,
+            "ssim": 0.677738600542493,
+            "lpips": 0.26067587971687317
+          }
+        }
+      },
+      "delta_on_minus_off": {
+        "avg_psnr": -0.13335624515163147,
+        "avg_ssim": 0.002461920197247225,
+        "avg_lpips": 0.0009647621746574353,
+        "best_val_psnr": -0.04004088612834167
+      }
+    }
+  },
+  "verdict": {
+    "pixel_charbonnier": "short-budget \u03bb=0.2 improves avg PSNR over matched \u03bb=0; absolute quality far below MSE 20k PECSR; no 20k claim",
+    "vgg_relu3": "short-budget \u03bb=0.01 does not improve avg PSNR over matched \u03bb=0",
+    "report": "report matched short-run deltas only; do not mix with MSE architecture table; no Stage-B/promote wording"
+  }
+}

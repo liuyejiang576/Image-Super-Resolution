@@ -1,0 +1,12 @@
+{
+  "paused_at": "2026-07-10T23:37:43.528412+08:00",
+  "runs": [
+    {
+      "run_id": "fsrcnn_fix_clean_20k_bs24",
+      "variant": "A1a_bs24",
+      "epoch": 446,
+      "target_epochs": 607,
+      "resume_from": "results/exp_runs/fsrcnn_fix_clean_20k_bs24/checkpoints/latest.pt"
+    }
+  ]
+}

@@ -16,7 +16,6 @@ logs/
 # Results: ignore contents by default; track small evidence bundle via exceptions
 /results/*
 !/results/MANIFEST.md
-!/results/final_report.md
 !/results/qualitative/
 !/results/qualitative/**
 !/results/latency_audit/
@@ -59,3 +58,14 @@ results/_headline/
 # OS/editor
 .DS_Store
 .vscode/
+
+# Class demo local pulls (Track D); keep crops/ + README + small failsafe meta
+/deploy/demo/out/
+/deploy/android/sr_bench/build/
+/deploy/android/sr_bench/build-host/
+
+# Heavy export binaries (rebuild via deploy scripts); keep JSON/md/param docs
+/deploy/artifacts/ncnn/*.bin
+/deploy/artifacts/onnx/
+/deploy/artifacts/torchscript/
+/third_party/

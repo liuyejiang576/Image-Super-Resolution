@@ -1,0 +1,26 @@
+{
+  "paused_at": "2026-07-11T11:34:08.292756+08:00",
+  "runs": [
+    {
+      "run_id": "sepres_v2_c16n10_20k",
+      "variant": "C16N10",
+      "epoch": 118,
+      "target_epochs": 607,
+      "resume_from": "results/exp_runs/sepres_v2_c16n10_20k/checkpoints/latest.pt"
+    },
+    {
+      "run_id": "sepres_v2_c16n8_20k",
+      "variant": "C16N8",
+      "epoch": 0,
+      "target_epochs": 607,
+      "resume_from": "results/exp_runs/sepres_v2_c16n8_20k/checkpoints/latest.pt"
+    },
+    {
+      "run_id": "sepres_v2_c20n6_20k",
+      "variant": "C20N6",
+      "epoch": 0,
+      "target_epochs": 607,
+      "resume_from": "results/exp_runs/sepres_v2_c20n6_20k/checkpoints/latest.pt"
+    }
+  ]
+}

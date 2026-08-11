@@ -1,0 +1,638 @@
+{
+  "task": "shell_deploy_factorial_audit",
+  "created_utc": "20260726_045949",
+  "preset": "audit_180",
+  "lr": [
+    180,
+    180
+  ],
+  "protocol": {
+    "phone_warmup": 50,
+    "phone_iters": 300,
+    "phone_sessions": 3,
+    "host_warmup": 30,
+    "host_iters": 100,
+    "backend_phone": "ncnn_vulkan_fp16",
+    "backend_host": "ncnn_fp16_cpu",
+    "note": "Latency uses fused deploy graphs; weights from PECSR/ECBSR 20k. pecsr_plus_skip reuses PECSR weights + residual wiring (latency-only). ecb_ends_no_skip reuses ECBSR fused backbone without skip."
+  },
+  "checkpoints": {
+    "pecsr": "results/exp_runs/sepres_v2_c16n10_20k/checkpoints/best.pt",
+    "ecbsr": "results/exp_runs/ecbsr_m10c16_20k/checkpoints/best.pt"
+  },
+  "variants": [
+    {
+      "id": "pecsr",
+      "label": "PECSR",
+      "endpoints": "plain",
+      "global_residual": false,
+      "factor": "baseline_shell",
+      "stem": "shell_pecsr_audit_180",
+      "torchscript": "deploy/artifacts/torchscript/shell_pecsr_audit_180.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/shell_pecsr_audit_180.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/shell_pecsr_audit_180.bin",
+      "ncnn_bytes": 125238,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "params": 30768,
+      "conv_macs": 984441600,
+      "conv_macs_g": 0.9844,
+      "graph": {
+        "layer_rows": 24,
+        "type_counts": {
+          "Input": 1,
+          "Convolution": 12,
+          "PReLU": 10,
+          "PixelShuffle": 1
+        },
+        "n_convolution": 12,
+        "n_prelu": 10,
+        "n_pixelshuffle": 1,
+        "residual_ops": {
+          "Split": 0,
+          "ExpandDims": 0,
+          "Tile": 0,
+          "Reshape": 0,
+          "BinaryOp": 0
+        },
+        "residual_op_total": 0,
+        "has_global_residual_graph": false,
+        "residual_shortcut_elems": 1555200,
+        "residual_traffic_fp16_mb_approx": 0.0
+      }
+    },
+    {
+      "id": "pecsr_plus_skip",
+      "label": "PECSR+skip",
+      "endpoints": "plain",
+      "global_residual": true,
+      "factor": "P1_residual_only",
+      "stem": "shell_pecsr_plus_skip_audit_180",
+      "torchscript": "deploy/artifacts/torchscript/shell_pecsr_plus_skip_audit_180.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/shell_pecsr_plus_skip_audit_180.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/shell_pecsr_plus_skip_audit_180.bin",
+      "ncnn_bytes": 125594,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "params": 30768,
+      "conv_macs": 984441600,
+      "conv_macs_g": 0.9844,
+      "graph": {
+        "layer_rows": 29,
+        "type_counts": {
+          "Input": 1,
+          "Split": 1,
+          "ExpandDims": 1,
+          "Tile": 1,
+          "Reshape": 1,
+          "Convolution": 12,
+          "PReLU": 10,
+          "BinaryOp": 1,
+          "PixelShuffle": 1
+        },
+        "n_convolution": 12,
+        "n_prelu": 10,
+        "n_pixelshuffle": 1,
+        "residual_ops": {
+          "Split": 1,
+          "ExpandDims": 1,
+          "Tile": 1,
+          "Reshape": 1,
+          "BinaryOp": 1
+        },
+        "residual_op_total": 5,
+        "has_global_residual_graph": true,
+        "residual_shortcut_elems": 1555200,
+        "residual_traffic_fp16_mb_approx": 12.4416
+      }
+    },
+    {
+      "id": "ecb_ends_no_skip",
+      "label": "ECB-ends no-skip",
+      "endpoints": "ecb",
+      "global_residual": false,
+      "factor": "P2_endpoints_only",
+      "stem": "shell_ecb_ends_no_skip_audit_180",
+      "torchscript": "deploy/artifacts/torchscript/shell_ecb_ends_no_skip_audit_180.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/shell_ecb_ends_no_skip_audit_180.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/shell_ecb_ends_no_skip_audit_180.bin",
+      "ncnn_bytes": 125367,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "params": 30784,
+      "conv_macs": 984441600,
+      "conv_macs_g": 0.9844,
+      "graph": {
+        "layer_rows": 25,
+        "type_counts": {
+          "Input": 1,
+          "Convolution": 12,
+          "PReLU": 11,
+          "PixelShuffle": 1
+        },
+        "n_convolution": 12,
+        "n_prelu": 11,
+        "n_pixelshuffle": 1,
+        "residual_ops": {
+          "Split": 0,
+          "ExpandDims": 0,
+          "Tile": 0,
+          "Reshape": 0,
+          "BinaryOp": 0
+        },
+        "residual_op_total": 0,
+        "has_global_residual_graph": false,
+        "residual_shortcut_elems": 1555200,
+        "residual_traffic_fp16_mb_approx": 0.0
+      }
+    },
+    {
+      "id": "ecbsr",
+      "label": "ECBSR",
+      "endpoints": "ecb",
+      "global_residual": true,
+      "factor": "full_ecbsr_shell",
+      "stem": "shell_ecbsr_audit_180",
+      "torchscript": "deploy/artifacts/torchscript/shell_ecbsr_audit_180.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/shell_ecbsr_audit_180.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/shell_ecbsr_audit_180.bin",
+      "ncnn_bytes": 125723,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "params": 30784,
+      "conv_macs": 984441600,
+      "conv_macs_g": 0.9844,
+      "graph": {
+        "layer_rows": 30,
+        "type_counts": {
+          "Input": 1,
+          "Split": 1,
+          "ExpandDims": 1,
+          "Tile": 1,
+          "Reshape": 1,
+          "Convolution": 12,
+          "PReLU": 11,
+          "BinaryOp": 1,
+          "PixelShuffle": 1
+        },
+        "n_convolution": 12,
+        "n_prelu": 11,
+        "n_pixelshuffle": 1,
+        "residual_ops": {
+          "Split": 1,
+          "ExpandDims": 1,
+          "Tile": 1,
+          "Reshape": 1,
+          "BinaryOp": 1
+        },
+        "residual_op_total": 5,
+        "has_global_residual_graph": true,
+        "residual_shortcut_elems": 1555200,
+        "residual_traffic_fp16_mb_approx": 12.4416
+      }
+    }
+  ],
+  "host": [
+    {
+      "id": "pecsr",
+      "median_ms": 21.9452,
+      "p90_ms": 24.5836,
+      "peak_memory_kb": 65516,
+      "raw": {
+        "param": "/home/hyb/CV_project/Image-Super-Resolution/deploy/artifacts/ncnn/shell_pecsr_audit_180.param",
+        "bin": "/home/hyb/CV_project/Image-Super-Resolution/deploy/artifacts/ncnn/shell_pecsr_audit_180.bin",
+        "in_blob": "in0",
+        "out_blob": "out0",
+        "input_w": 180,
+        "input_h": 180,
+        "warmup": 30,
+        "iters": 100,
+        "fp16": true,
+        "vulkan": false,
+        "threads": 4,
+        "median_ms": 21.9452,
+        "p90_ms": 24.5836,
+        "fps": 45.57,
+        "peak_memory_kb": 65516
+      }
+    },
+    {
+      "id": "pecsr_plus_skip",
+      "median_ms": 22.7838,
+      "p90_ms": 24.1765,
+      "peak_memory_kb": 83144,
+      "raw": {
+        "param": "/home/hyb/CV_project/Image-Super-Resolution/deploy/artifacts/ncnn/shell_pecsr_plus_skip_audit_180.param",
+        "bin": "/home/hyb/CV_project/Image-Super-Resolution/deploy/artifacts/ncnn/shell_pecsr_plus_skip_audit_180.bin",
+        "in_blob": "in0",
+        "out_blob": "out0",
+        "input_w": 180,
+        "input_h": 180,
+        "warmup": 30,
+        "iters": 100,
+        "fp16": true,
+        "vulkan": false,
+        "threads": 4,
+        "median_ms": 22.7838,
+        "p90_ms": 24.1765,
+        "fps": 43.89,
+        "peak_memory_kb": 83144
+      }
+    },
+    {
+      "id": "ecb_ends_no_skip",
+      "median_ms": 20.0225,
+      "p90_ms": 21.7093,
+      "peak_memory_kb": 65660,
+      "raw": {
+        "param": "/home/hyb/CV_project/Image-Super-Resolution/deploy/artifacts/ncnn/shell_ecb_ends_no_skip_audit_180.param",
+        "bin": "/home/hyb/CV_project/Image-Super-Resolution/deploy/artifacts/ncnn/shell_ecb_ends_no_skip_audit_180.bin",
+        "in_blob": "in0",
+        "out_blob": "out0",
+        "input_w": 180,
+        "input_h": 180,
+        "warmup": 30,
+        "iters": 100,
+        "fp16": true,
+        "vulkan": false,
+        "threads": 4,
+        "median_ms": 20.0225,
+        "p90_ms": 21.7093,
+        "fps": 49.94,
+        "peak_memory_kb": 65660
+      }
+    },
+    {
+      "id": "ecbsr",
+      "median_ms": 23.227,
+      "p90_ms": 25.0873,
+      "peak_memory_kb": 83328,
+      "raw": {
+        "param": "/home/hyb/CV_project/Image-Super-Resolution/deploy/artifacts/ncnn/shell_ecbsr_audit_180.param",
+        "bin": "/home/hyb/CV_project/Image-Super-Resolution/deploy/artifacts/ncnn/shell_ecbsr_audit_180.bin",
+        "in_blob": "in0",
+        "out_blob": "out0",
+        "input_w": 180,
+        "input_h": 180,
+        "warmup": 30,
+        "iters": 100,
+        "fp16": true,
+        "vulkan": false,
+        "threads": 4,
+        "median_ms": 23.227,
+        "p90_ms": 25.0873,
+        "fps": 43.05,
+        "peak_memory_kb": 83328
+      }
+    }
+  ],
+  "cuda": {
+    "pecsr": {
+      "skipped": false,
+      "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "precision": "fp32",
+      "median_ms": 1.230239987373352,
+      "p90_ms": 1.9618879556655884,
+      "iters": 500
+    },
+    "pecsr_plus_skip": {
+      "skipped": false,
+      "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "precision": "fp32",
+      "median_ms": 1.221664011478424,
+      "p90_ms": 1.950719952583313,
+      "iters": 500
+    },
+    "ecb_ends_no_skip": {
+      "skipped": false,
+      "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "precision": "fp32",
+      "median_ms": 1.4120960235595703,
+      "p90_ms": 2.6122241020202637,
+      "iters": 500
+    },
+    "ecbsr": {
+      "skipped": false,
+      "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "precision": "fp32",
+      "median_ms": 2.131119966506958,
+      "p90_ms": 3.773439884185791,
+      "iters": 500
+    }
+  },
+  "phone": {
+    "device": {
+      "model": "V2419A",
+      "device": "PD2419",
+      "platform": "mt6991"
+    },
+    "backend": "ncnn_vulkan_fp16",
+    "variants": {
+      "pecsr": {
+        "sessions": 3,
+        "median_ms_mean": 16.4281,
+        "median_ms_std": 0.09415805860360549,
+        "p90_ms_mean": 17.093166666666665,
+        "raw": [
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_pecsr_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_pecsr_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 16.3176,
+            "p90_ms": 17.1097,
+            "fps": 61.28,
+            "peak_memory_kb": 85020
+          },
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_pecsr_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_pecsr_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 16.419,
+            "p90_ms": 17.0154,
+            "fps": 60.91,
+            "peak_memory_kb": 85128
+          },
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_pecsr_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_pecsr_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 16.5477,
+            "p90_ms": 17.1544,
+            "fps": 60.43,
+            "peak_memory_kb": 85980
+          }
+        ]
+      },
+      "pecsr_plus_skip": {
+        "sessions": 3,
+        "median_ms_mean": 17.655266666666666,
+        "median_ms_std": 0.4054922139271667,
+        "p90_ms_mean": 18.22416666666667,
+        "raw": [
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_pecsr_plus_skip_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_pecsr_plus_skip_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 18.2262,
+            "p90_ms": 18.7325,
+            "fps": 54.87,
+            "peak_memory_kb": 83508
+          },
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_pecsr_plus_skip_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_pecsr_plus_skip_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 17.3233,
+            "p90_ms": 17.9128,
+            "fps": 57.73,
+            "peak_memory_kb": 83012
+          },
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_pecsr_plus_skip_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_pecsr_plus_skip_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 17.4163,
+            "p90_ms": 18.0272,
+            "fps": 57.42,
+            "peak_memory_kb": 83140
+          }
+        ]
+      },
+      "ecb_ends_no_skip": {
+        "sessions": 3,
+        "median_ms_mean": 16.375733333333333,
+        "median_ms_std": 0.2874862817983181,
+        "p90_ms_mean": 17.09573333333333,
+        "raw": [
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_ecb_ends_no_skip_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_ecb_ends_no_skip_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 16.4333,
+            "p90_ms": 17.0947,
+            "fps": 60.85,
+            "peak_memory_kb": 85500
+          },
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_ecb_ends_no_skip_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_ecb_ends_no_skip_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 16.6955,
+            "p90_ms": 17.1919,
+            "fps": 59.9,
+            "peak_memory_kb": 85684
+          },
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_ecb_ends_no_skip_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_ecb_ends_no_skip_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 15.9984,
+            "p90_ms": 17.0006,
+            "fps": 62.51,
+            "peak_memory_kb": 85248
+          }
+        ]
+      },
+      "ecbsr": {
+        "sessions": 3,
+        "median_ms_mean": 17.2902,
+        "median_ms_std": 0.06566475462529331,
+        "p90_ms_mean": 17.965600000000002,
+        "raw": [
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_ecbsr_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_ecbsr_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 17.224,
+            "p90_ms": 17.8364,
+            "fps": 58.06,
+            "peak_memory_kb": 83300
+          },
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_ecbsr_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_ecbsr_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 17.3797,
+            "p90_ms": 18.1442,
+            "fps": 57.54,
+            "peak_memory_kb": 83832
+          },
+          {
+            "param": "/data/local/tmp/sr_bench/models/shell_ecbsr_audit_180.param",
+            "bin": "/data/local/tmp/sr_bench/models/shell_ecbsr_audit_180.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 17.2669,
+            "p90_ms": 17.9162,
+            "fps": 57.91,
+            "peak_memory_kb": 83092
+          }
+        ]
+      }
+    }
+  },
+  "attribution": {
+    "phone_ms": {
+      "pecsr_plus_skip": {
+        "median_ms": 17.655266666666666,
+        "delta_vs_pecsr_ms": 1.2271666666666654,
+        "delta_vs_pecsr_pct": 7.469924499282725
+      },
+      "ecb_ends_no_skip": {
+        "median_ms": 16.375733333333333,
+        "delta_vs_pecsr_ms": -0.05236666666666778,
+        "delta_vs_pecsr_pct": -0.3187627702939949
+      },
+      "ecbsr": {
+        "median_ms": 17.2902,
+        "delta_vs_pecsr_ms": 0.8620999999999981,
+        "delta_vs_pecsr_pct": 5.247715804018712
+      },
+      "residual_cost_ms": 1.2271666666666654,
+      "endpoint_cost_ms": -0.05236666666666778,
+      "residual_on_ecb_ends_ms": 0.9144666666666659
+    },
+    "host_ms": {
+      "pecsr_plus_skip": {
+        "median_ms": 22.7838,
+        "delta_vs_pecsr_ms": 0.8385999999999996,
+        "delta_vs_pecsr_pct": 3.821336784353752
+      },
+      "ecb_ends_no_skip": {
+        "median_ms": 20.0225,
+        "delta_vs_pecsr_ms": -1.922699999999999,
+        "delta_vs_pecsr_pct": -8.761369228806295
+      },
+      "ecbsr": {
+        "median_ms": 23.227,
+        "delta_vs_pecsr_ms": 1.2818000000000005,
+        "delta_vs_pecsr_pct": 5.840912819204203
+      }
+    },
+    "graph": {
+      "pecsr": {
+        "layer_rows": 24,
+        "n_convolution": 12,
+        "n_prelu": 10,
+        "residual_op_total": 0,
+        "has_global_residual_graph": false
+      },
+      "pecsr_plus_skip": {
+        "layer_rows": 29,
+        "n_convolution": 12,
+        "n_prelu": 10,
+        "residual_op_total": 5,
+        "has_global_residual_graph": true
+      },
+      "ecb_ends_no_skip": {
+        "layer_rows": 25,
+        "n_convolution": 12,
+        "n_prelu": 11,
+        "residual_op_total": 0,
+        "has_global_residual_graph": false
+      },
+      "ecbsr": {
+        "layer_rows": 30,
+        "n_convolution": 12,
+        "n_prelu": 11,
+        "residual_op_total": 5,
+        "has_global_residual_graph": true
+      }
+    }
+  }
+}

@@ -95,7 +95,7 @@ def main() -> None:
             print("[parallel] all runs complete")
             write_status_snapshot()
             subprocess.run([PYTHON, "scripts/eval_exp_runs.py"], cwd=PROJECT_ROOT, check=False)
-            subprocess.run([PYTHON, "scripts/build_enhanced_report.py"], cwd=PROJECT_ROOT, check=False)
+            print("[parallel] eval done — sync report per ../report/SYNC.md")
             break
 
         external = external_running()

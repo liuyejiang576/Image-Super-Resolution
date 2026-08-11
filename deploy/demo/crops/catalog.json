@@ -1,0 +1,62 @@
+[
+  {
+    "file": "crop01_texture_lr180.png",
+    "source": "DIV2K_valid_HR/0801.png",
+    "hr_box": [
+      400,
+      300,
+      1120,
+      1020
+    ],
+    "lr_size": [
+      180,
+      180
+    ],
+    "look_for": "brick / fine texture"
+  },
+  {
+    "file": "crop02_edges_lr180.png",
+    "source": "DIV2K_valid_HR/0802.png",
+    "hr_box": [
+      200,
+      400,
+      920,
+      1120
+    ],
+    "lr_size": [
+      180,
+      180
+    ],
+    "look_for": "structure edges"
+  },
+  {
+    "file": "crop03_textish_lr180.png",
+    "source": "DIV2K_valid_HR/0803.png",
+    "hr_box": [
+      600,
+      200,
+      1320,
+      920
+    ],
+    "lr_size": [
+      180,
+      180
+    ],
+    "look_for": "high-frequency detail"
+  },
+  {
+    "file": "crop04_foliage_lr180.png",
+    "source": "DIV2K_valid_HR/0804.png",
+    "hr_box": [
+      100,
+      200,
+      820,
+      920
+    ],
+    "lr_size": [
+      180,
+      180
+    ],
+    "look_for": "foliage / clutter"
+  }
+]

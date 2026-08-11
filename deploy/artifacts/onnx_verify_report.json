@@ -1,0 +1,186 @@
+{
+  "results": [
+    {
+      "model_id": "fsrcnn",
+      "label": "FSRCNN",
+      "checkpoint": "results/exp_runs/fsrcnn_fix_clean_20k/checkpoints/best.pt",
+      "preset": "audit_180",
+      "lr_w": 180,
+      "lr_h": 180,
+      "hr_w": 720,
+      "hr_h": 720,
+      "onnx_path": "deploy/artifacts/onnx/fsrcnn_audit_180.onnx",
+      "onnx_size_mb": 0.0249,
+      "opset": 18,
+      "params": 24683,
+      "flops_g": 7.41,
+      "max_abs_diff": 9.059906005859375e-06,
+      "parity_psnr_db": 118.84810348144941,
+      "output_shape_pt": [
+        1,
+        3,
+        720,
+        720
+      ],
+      "output_shape_onnx": [
+        1,
+        3,
+        720,
+        720
+      ],
+      "pass": true
+    },
+    {
+      "model_id": "fsrcnn",
+      "label": "FSRCNN",
+      "checkpoint": "results/exp_runs/fsrcnn_fix_clean_20k/checkpoints/best.pt",
+      "preset": "deploy_720p",
+      "lr_w": 320,
+      "lr_h": 180,
+      "hr_w": 1280,
+      "hr_h": 720,
+      "onnx_path": "deploy/artifacts/onnx/fsrcnn_deploy_720p.onnx",
+      "onnx_size_mb": 0.0249,
+      "opset": 18,
+      "params": 24683,
+      "flops_g": 7.41,
+      "max_abs_diff": 9.5367431640625e-06,
+      "parity_psnr_db": 118.72973833368482,
+      "output_shape_pt": [
+        1,
+        3,
+        720,
+        1280
+      ],
+      "output_shape_onnx": [
+        1,
+        3,
+        720,
+        1280
+      ],
+      "pass": true
+    },
+    {
+      "model_id": "mobile_srnet_base",
+      "label": "MobileSRNet-Base",
+      "checkpoint": "results/exp_runs/mobile_srnet_20k/checkpoints/best.pt",
+      "preset": "audit_180",
+      "lr_w": 180,
+      "lr_h": 180,
+      "hr_w": 720,
+      "hr_h": 720,
+      "onnx_path": "deploy/artifacts/onnx/mobile_srnet_base_audit_180.onnx",
+      "onnx_size_mb": 0.0463,
+      "opset": 18,
+      "params": 30208,
+      "flops_g": 0.976,
+      "max_abs_diff": 2.0116567611694336e-06,
+      "parity_psnr_db": 130.85356474357226,
+      "output_shape_pt": [
+        1,
+        3,
+        720,
+        720
+      ],
+      "output_shape_onnx": [
+        1,
+        3,
+        720,
+        720
+      ],
+      "pass": true
+    },
+    {
+      "model_id": "mobile_srnet_base",
+      "label": "MobileSRNet-Base",
+      "checkpoint": "results/exp_runs/mobile_srnet_20k/checkpoints/best.pt",
+      "preset": "deploy_720p",
+      "lr_w": 320,
+      "lr_h": 180,
+      "hr_w": 1280,
+      "hr_h": 720,
+      "onnx_path": "deploy/artifacts/onnx/mobile_srnet_base_deploy_720p.onnx",
+      "onnx_size_mb": 0.0463,
+      "opset": 18,
+      "params": 30208,
+      "flops_g": 0.976,
+      "max_abs_diff": 2.384185791015625e-06,
+      "parity_psnr_db": 130.8409981424504,
+      "output_shape_pt": [
+        1,
+        3,
+        720,
+        1280
+      ],
+      "output_shape_onnx": [
+        1,
+        3,
+        720,
+        1280
+      ],
+      "pass": true
+    },
+    {
+      "model_id": "mobile_srnet_plus",
+      "label": "MobileSRNet-Plus",
+      "checkpoint": "results/exp_runs/mobile_srnet_plus_20k/checkpoints/best.pt",
+      "preset": "audit_180",
+      "lr_w": 180,
+      "lr_h": 180,
+      "hr_w": 720,
+      "hr_h": 720,
+      "onnx_path": "deploy/artifacts/onnx/mobile_srnet_plus_audit_180.onnx",
+      "onnx_size_mb": 0.06,
+      "opset": 18,
+      "params": 66864,
+      "flops_g": 2.163,
+      "max_abs_diff": 2.1457672119140625e-06,
+      "parity_psnr_db": 130.27876223885517,
+      "output_shape_pt": [
+        1,
+        3,
+        720,
+        720
+      ],
+      "output_shape_onnx": [
+        1,
+        3,
+        720,
+        720
+      ],
+      "pass": true
+    },
+    {
+      "model_id": "mobile_srnet_plus",
+      "label": "MobileSRNet-Plus",
+      "checkpoint": "results/exp_runs/mobile_srnet_plus_20k/checkpoints/best.pt",
+      "preset": "deploy_720p",
+      "lr_w": 320,
+      "lr_h": 180,
+      "hr_w": 1280,
+      "hr_h": 720,
+      "onnx_path": "deploy/artifacts/onnx/mobile_srnet_plus_deploy_720p.onnx",
+      "onnx_size_mb": 0.06,
+      "opset": 18,
+      "params": 66864,
+      "flops_g": 2.163,
+      "max_abs_diff": 2.1457672119140625e-06,
+      "parity_psnr_db": 130.2300450345183,
+      "output_shape_pt": [
+        1,
+        3,
+        720,
+        1280
+      ],
+      "output_shape_onnx": [
+        1,
+        3,
+        720,
+        1280
+      ],
+      "pass": true
+    }
+  ],
+  "atol": 0.001,
+  "all_pass": true
+}

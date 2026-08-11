@@ -8,7 +8,7 @@ from typing import Any
 import torch
 import torch.nn as nn
 
-from models import FSRCNN, MobileSRNet
+from models import DualStreamSR, ECBSR, FSRCNN, MobileSRNet, PlainSR, SepResV2
 
 
 def build_model_from_config(cfg: dict) -> nn.Module:
@@ -22,6 +22,49 @@ def build_model_from_config(cfg: dict) -> nn.Module:
             num_channels=int(model_cfg["num_channels"]),
             feat=int(model_cfg["feat"]),
             num_blocks=int(model_cfg["num_blocks"]),
+        )
+    if model_type == "ecbsr":
+        return ECBSR(
+            scale_factor=int(data_cfg["scale"]),
+            num_channels=int(model_cfg.get("num_channels", 3)),
+            num_block=int(model_cfg.get("num_block", 10)),
+            num_channel=int(model_cfg.get("num_channel", 16)),
+            with_idt=bool(model_cfg.get("with_idt", True)),
+            act_type=str(model_cfg.get("act_type", "prelu")),
+            depth_multiplier=float(model_cfg.get("depth_multiplier", 2.0)),
+        )
+    if model_type == "sepres_v2":
+        # Accept feat/num_blocks aliases; Spec fields are num_channel/num_block.
+        num_channel = model_cfg.get("num_channel", model_cfg.get("feat"))
+        num_block = model_cfg.get("num_block", model_cfg.get("num_blocks"))
+        if num_channel is None or num_block is None:
+            raise ValueError(
+                "sepres_v2 requires num_channel (or feat) and num_block (or num_blocks)"
+            )
+        return SepResV2(
+            scale_factor=int(data_cfg["scale"]),
+            num_channels=int(model_cfg.get("num_channels", 3)),
+            num_channel=int(num_channel),
+            num_block=int(num_block),
+            with_idt=bool(model_cfg.get("with_idt", True)),
+            act_type=str(model_cfg.get("act_type", "prelu")),
+            depth_multiplier=float(model_cfg.get("depth_multiplier", 2.0)),
+            body_kind=str(model_cfg.get("body_kind", "ecb")),
+        )
+    if model_type in {"dual_stream_sr", "dualstream", "etds_dual"}:
+        return DualStreamSR(
+            scale_factor=int(data_cfg["scale"]),
+            num_channels=int(model_cfg.get("num_channels", 3)),
+            detail_channels=int(model_cfg.get("detail_channels", 17)),
+            low_channels=int(model_cfg.get("low_channels", 3)),
+            num_mid=int(model_cfg.get("num_mid", 5)),
+        )
+    if model_type in {"plain_sr", "plain_c20n5"}:
+        return PlainSR(
+            scale_factor=int(data_cfg["scale"]),
+            num_channels=int(model_cfg.get("num_channels", 3)),
+            num_channel=int(model_cfg.get("num_channel", 20)),
+            num_mid=int(model_cfg.get("num_mid", 5)),
         )
     if model_type == "fsrcnn" or "d" in model_cfg:
         return FSRCNN(

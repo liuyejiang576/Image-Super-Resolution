@@ -1,0 +1,23 @@
+{
+  "models": [
+    {
+      "model_id": "fsrcnn",
+      "label": "FSRCNN",
+      "preset": "audit_180",
+      "lr_w": 180,
+      "lr_h": 180,
+      "hr_w": 720,
+      "hr_h": 720,
+      "params": 24683,
+      "flops_g": 7.41,
+      "ncnn_param": "deploy/artifacts/ncnn/fsrcnn_deploy_720p.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/fsrcnn_deploy_720p.bin",
+      "ncnn_param_size_mb": 0.0014,
+      "ncnn_bin_size_mb": 0.0942,
+      "ncnn_total_size_mb": 0.0955,
+      "convert_method": "pnnx",
+      "in_blob": "in0",
+      "out_blob": "out0"
+    }
+  ]
+}

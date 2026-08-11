@@ -1,0 +1,73 @@
+{
+  "description": "Headline 20k checkpoints for mobile deployment. freeze_ref = SepResSR-v2 C16N10 fused (provisional B4).",
+  "freeze_ref": "sepres_v2_c16n10",
+  "models": [
+    {
+      "id": "fsrcnn",
+      "label": "FSRCNN",
+      "role": "historical_baseline",
+      "checkpoint": "results/exp_runs/fsrcnn_fix_clean_20k/checkpoints/best.pt",
+      "params": 24683,
+      "flops_g": 7.41
+    },
+    {
+      "id": "mobile_srnet_base",
+      "label": "MobileSRNet-Base / SepResSR-Lite",
+      "role": "sep_control",
+      "checkpoint": "results/exp_runs/mobile_srnet_20k/checkpoints/best.pt",
+      "params": 30208,
+      "flops_g": 0.976
+    },
+    {
+      "id": "mobile_srnet_plus",
+      "label": "MobileSRNet-Plus / SepResSR-Plus",
+      "role": "sep_control",
+      "checkpoint": "results/exp_runs/mobile_srnet_plus_20k/checkpoints/best.pt",
+      "params": 66864,
+      "flops_g": 2.163
+    },
+    {
+      "id": "ecbsr_m10c16",
+      "label": "ECBSR-M10C16 (fused)",
+      "role": "modern_baseline",
+      "deploy_fuse": true,
+      "checkpoint": "results/exp_runs/ecbsr_m10c16_20k/checkpoints/best.pt",
+      "params": 30784,
+      "flops_g": 0.984
+    },
+    {
+      "id": "sepres_v2_c16n10",
+      "label": "SepResSR-v2 C16N10 (freeze_ref, fused)",
+      "role": "freeze_ref",
+      "deploy_fuse": true,
+      "checkpoint": "results/exp_runs/sepres_v2_c16n10_20k/checkpoints/best.pt",
+      "params": 30768,
+      "flops_g": 0.984,
+      "phone_note": "Paired Gate-2: med mean 24.82 / p90 29.16 vs ECBSR 26.34 / 30.10; see b4_v2_compare.json"
+    }
+  ],
+  "input_presets": [
+    {
+      "name": "audit_180",
+      "lr_w": 180,
+      "lr_h": 180,
+      "hr_w": 720,
+      "hr_h": 720,
+      "note": "Matches RTX latency audit"
+    },
+    {
+      "name": "deploy_720p",
+      "lr_w": 320,
+      "lr_h": 180,
+      "hr_w": 1280,
+      "hr_h": 720,
+      "note": "Primary deploy size LR 320x180"
+    }
+  ],
+  "benchmark": {
+    "warmup": 50,
+    "iters": 300,
+    "precision": "fp16",
+    "backend": "ncnn_vulkan"
+  }
+}

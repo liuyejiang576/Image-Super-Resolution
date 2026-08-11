@@ -1,0 +1,308 @@
+{
+  "timestamp": "2026-07-10T19:40:55.652773+08:00",
+  "task": "B2_profile",
+  "device": "cpu",
+  "lr_w": 320,
+  "lr_h": 180,
+  "warmup": 5,
+  "runs": 30,
+  "conclusions": [
+    "Desktop PyTorch (Base block0): DW=8.677ms vs PW=6.046ms (DW heavier on this backend).",
+    "Plus vs Base desktop full: 235.07 vs 91.17 ms (feat 64/40, blocks 8/6, convs 18/14).",
+    "Body dominates gap: Base body 68.30ms, Plus body 227.52ms (head 2.32/1.58, tail 19.90/14.00).",
+    "Desktop fuse Base: 91.17 \u2192 91.20 ms (convs 14 \u2192 8).",
+    "Desktop fuse Plus: 235.07 \u2192 257.20 ms (convs 18 \u2192 10).",
+    "Phone B1 already showed fused slower on NCNN Vulkan; desktop result is supporting context only (PyTorch \u2260 NCNN).",
+    "B4 guidance: do not chase DW\u2192dense fuse for speed; prefer capacity (width/depth) or backend-friendly blocks (ECBSR-style) over folding sep."
+  ],
+  "results": [
+    {
+      "model_id": "fsrcnn",
+      "label": "FSRCNN",
+      "variant": "native",
+      "checkpoint": "results/exp_runs/fsrcnn_fix_clean_20k/checkpoints/best.pt",
+      "params": 24683,
+      "conv_counts": {
+        "conv_total": 7,
+        "depthwise_3x3": 0,
+        "pointwise_1x1": 2,
+        "dense_conv": 5
+      },
+      "timing": {
+        "full": {
+          "median_ms": 61.327326999162324,
+          "mean_ms": 69.19048580069405,
+          "p90_ms": 94.5860409992747,
+          "runs": 30
+        }
+      },
+      "cfg_model": {
+        "num_channels": 3,
+        "d": 56,
+        "s": 12,
+        "m": 4
+      }
+    },
+    {
+      "model_id": "mobile_srnet_base",
+      "label": "MobileSRNet-Base",
+      "variant": "native",
+      "checkpoint": "results/exp_runs/mobile_srnet_20k/checkpoints/best.pt",
+      "params": 30208,
+      "conv_counts": {
+        "conv_total": 14,
+        "depthwise_3x3": 6,
+        "pointwise_1x1": 6,
+        "dense_conv": 2
+      },
+      "timing": {
+        "full": {
+          "median_ms": 91.17169550154358,
+          "mean_ms": 101.7095663655103,
+          "p90_ms": 122.08267299865838,
+          "runs": 30
+        },
+        "head": {
+          "median_ms": 2.317116999620339,
+          "mean_ms": 2.9316474336762135,
+          "p90_ms": 4.591898999933619,
+          "runs": 30
+        },
+        "body": {
+          "median_ms": 68.29649999781395,
+          "mean_ms": 70.93030606629327,
+          "p90_ms": 77.94356699741911,
+          "runs": 30
+        },
+        "tail": {
+          "median_ms": 19.902734999050153,
+          "mean_ms": 20.289420232923778,
+          "p90_ms": 23.2467089954298,
+          "runs": 30
+        },
+        "block0_dw": {
+          "median_ms": 8.676703000674024,
+          "mean_ms": 22.848525533724267,
+          "p90_ms": 62.92340900108684,
+          "runs": 30
+        },
+        "block0_pw": {
+          "median_ms": 6.046362999768462,
+          "mean_ms": 6.065793832628212,
+          "p90_ms": 7.654046996321995,
+          "runs": 30
+        },
+        "block0_act": {
+          "median_ms": 0.07296949843293987,
+          "mean_ms": 0.07910409937418687,
+          "p90_ms": 0.12070699449395761,
+          "runs": 30
+        },
+        "block0_full": {
+          "median_ms": 19.378646502445918,
+          "mean_ms": 19.96566686721053,
+          "p90_ms": 24.986016003822442,
+          "runs": 30
+        },
+        "num_blocks": 6
+      },
+      "cfg_model": {
+        "type": "mobile_srnet",
+        "num_channels": 3,
+        "feat": 40,
+        "num_blocks": 6
+      }
+    },
+    {
+      "model_id": "mobile_srnet_base",
+      "label": "MobileSRNet-Base-fused",
+      "variant": "fused",
+      "checkpoint": "results/exp_runs/mobile_srnet_20k/checkpoints/best.pt",
+      "params": 104848,
+      "conv_counts": {
+        "conv_total": 8,
+        "depthwise_3x3": 0,
+        "pointwise_1x1": 0,
+        "dense_conv": 8
+      },
+      "timing": {
+        "full": {
+          "median_ms": 91.20009250182193,
+          "mean_ms": 150.69414606671975,
+          "p90_ms": 290.1694380052504,
+          "runs": 30
+        },
+        "head": {
+          "median_ms": 2.8430139973352198,
+          "mean_ms": 2.8956069336951864,
+          "p90_ms": 3.434992002439685,
+          "runs": 30
+        },
+        "body": {
+          "median_ms": 102.3800030015991,
+          "mean_ms": 135.00124129932374,
+          "p90_ms": 170.29870799888158,
+          "runs": 30
+        },
+        "tail": {
+          "median_ms": 13.59486700312118,
+          "mean_ms": 14.051008266445328,
+          "p90_ms": 17.757511006493587,
+          "runs": 30
+        },
+        "block0_dense": {
+          "median_ms": 9.958004498912487,
+          "mean_ms": 10.023699133550204,
+          "p90_ms": 11.003640000126325,
+          "runs": 30
+        },
+        "block0_full": {
+          "median_ms": 11.710410999512533,
+          "mean_ms": 13.178700666321674,
+          "p90_ms": 17.39617199928034,
+          "runs": 30
+        },
+        "num_blocks": 6
+      },
+      "cfg_model": {
+        "type": "mobile_srnet",
+        "num_channels": 3,
+        "feat": 40,
+        "num_blocks": 6
+      }
+    },
+    {
+      "model_id": "mobile_srnet_plus",
+      "label": "MobileSRNet-Plus",
+      "variant": "native",
+      "checkpoint": "results/exp_runs/mobile_srnet_plus_20k/checkpoints/best.pt",
+      "params": 66864,
+      "conv_counts": {
+        "conv_total": 18,
+        "depthwise_3x3": 8,
+        "pointwise_1x1": 8,
+        "dense_conv": 2
+      },
+      "timing": {
+        "full": {
+          "median_ms": 235.07411450191285,
+          "mean_ms": 273.68654706636636,
+          "p90_ms": 349.7650350036565,
+          "runs": 30
+        },
+        "head": {
+          "median_ms": 1.5824069996597245,
+          "mean_ms": 1.619059366203146,
+          "p90_ms": 1.92911499470938,
+          "runs": 30
+        },
+        "body": {
+          "median_ms": 227.52004750145716,
+          "mean_ms": 260.4998965005507,
+          "p90_ms": 400.1584330035257,
+          "runs": 30
+        },
+        "tail": {
+          "median_ms": 13.997240501339547,
+          "mean_ms": 15.13789183324358,
+          "p90_ms": 15.84476599964546,
+          "runs": 30
+        },
+        "block0_dw": {
+          "median_ms": 12.42850649941829,
+          "mean_ms": 13.548693233557666,
+          "p90_ms": 21.921697996731382,
+          "runs": 30
+        },
+        "block0_pw": {
+          "median_ms": 17.2708070022054,
+          "mean_ms": 17.642511799931526,
+          "p90_ms": 21.001349996367935,
+          "runs": 30
+        },
+        "block0_act": {
+          "median_ms": 0.19399149823584594,
+          "mean_ms": 0.21020403340420066,
+          "p90_ms": 0.30826999864075333,
+          "runs": 30
+        },
+        "block0_full": {
+          "median_ms": 23.01682899997104,
+          "mean_ms": 29.927818033562897,
+          "p90_ms": 46.81478699785657,
+          "runs": 30
+        },
+        "num_blocks": 8
+      },
+      "cfg_model": {
+        "type": "mobile_srnet",
+        "num_channels": 3,
+        "feat": 64,
+        "num_blocks": 8
+      }
+    },
+    {
+      "model_id": "mobile_srnet_plus",
+      "label": "MobileSRNet-Plus-fused",
+      "variant": "fused",
+      "checkpoint": "results/exp_runs/mobile_srnet_plus_20k/checkpoints/best.pt",
+      "params": 324400,
+      "conv_counts": {
+        "conv_total": 10,
+        "depthwise_3x3": 0,
+        "pointwise_1x1": 0,
+        "dense_conv": 10
+      },
+      "timing": {
+        "full": {
+          "median_ms": 257.2004760004347,
+          "mean_ms": 276.24713083375053,
+          "p90_ms": 367.8764710057294,
+          "runs": 30
+        },
+        "head": {
+          "median_ms": 1.5849315022933297,
+          "mean_ms": 1.697985767047309,
+          "p90_ms": 2.109419001499191,
+          "runs": 30
+        },
+        "body": {
+          "median_ms": 182.34911300169188,
+          "mean_ms": 238.4163154005364,
+          "p90_ms": 379.65072200313443,
+          "runs": 30
+        },
+        "tail": {
+          "median_ms": 20.058908499777317,
+          "mean_ms": 25.70731496598455,
+          "p90_ms": 44.78902000118978,
+          "runs": 30
+        },
+        "block0_dense": {
+          "median_ms": 21.181803003855748,
+          "mean_ms": 29.53453979983654,
+          "p90_ms": 54.070386999228504,
+          "runs": 30
+        },
+        "block0_full": {
+          "median_ms": 18.013539996900363,
+          "mean_ms": 18.22244246698877,
+          "p90_ms": 19.955535004555713,
+          "runs": 30
+        },
+        "num_blocks": 8
+      },
+      "cfg_model": {
+        "type": "mobile_srnet",
+        "num_channels": 3,
+        "feat": 64,
+        "num_blocks": 8
+      }
+    }
+  ],
+  "phone_context_files": {
+    "a0": "deploy/artifacts/results/mobile_benchmark_latest.json",
+    "b1": "deploy/artifacts/results/fused_sep_compare_latest.json"
+  },
+  "ncnn_layer_timing": null
+}

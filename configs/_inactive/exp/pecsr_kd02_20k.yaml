@@ -1,0 +1,46 @@
+# SUPERSEDED 2026-07-11: B5 KD is Stage-B 2k (pecsr_pixel_*_2k / pecsr_vgg3_*_2k). Do not relaunch.
+# B5: matched pixel KD on PECSR (Charbonnier λ=0.2). Pair with pecsr_kd0_20k.
+dataset:
+  train_hr_dir: data/div2k/DIV2K_train_HR
+  valid_hr_dir: data/div2k/DIV2K_valid_HR
+  scale: 4
+  hr_patch_size: 256
+  augment: true
+model:
+  type: sepres_v2
+  num_channels: 3
+  num_channel: 16
+  num_block: 10
+  act_type: prelu
+  depth_multiplier: 2.0
+  with_idt: true
+  body_kind: ecb
+teacher:
+  type: swinir_classical_x4
+  training_patch_size: 48
+distillation:
+  lambda_kd: 0.2
+  kd_method: pixel_charbonnier
+train:
+  seed: 42
+  batch_size: 16
+  num_workers: 4
+  epochs: 400
+  learning_rate: 0.001
+  weight_decay: 0.0
+  milestones:
+  - 240
+  - 340
+  gamma: 0.5
+  amp: true
+  log_every: 50
+  max_train_steps_per_epoch: null
+validation:
+  batch_size: 1
+  num_workers: 2
+  max_images: 100
+checkpoint:
+  dir: results/exp_runs/pecsr_kd02_20k/checkpoints
+  best_name: best.pt
+  latest_name: latest.pt
+  log_path: results/exp_runs/pecsr_kd02_20k/train_log.jsonl

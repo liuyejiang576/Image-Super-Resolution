@@ -1,0 +1,189 @@
+{
+  "timestamp": "2026-07-11T10:30:25.466646+08:00",
+  "task": "B4_v2_prescreen",
+  "gate": "Gate-0-export-phone-smoke",
+  "official_numbers": false,
+  "init_seed": 0,
+  "preset": "deploy_720p",
+  "smoke_protocol": {
+    "warmup": 20,
+    "iters": 50,
+    "fp16": true,
+    "vulkan": true,
+    "label": "graph_smoke"
+  },
+  "gross_median_gate_ms": 38.0,
+  "candidates": [
+    {
+      "id": "v2_a",
+      "config": "configs/exp/sepres_v2_c16n8_20k.yaml",
+      "init_seed": 0,
+      "num_channel": 16,
+      "num_block": 8,
+      "preset": "deploy_720p",
+      "lr_w": 320,
+      "lr_h": 180,
+      "numerical": {
+        "max_abs": 0.0,
+        "pass": true,
+        "output_shape": [
+          1,
+          3,
+          720,
+          1280
+        ]
+      },
+      "fused_convs": 10,
+      "fused_params": 26096,
+      "conv_macs_lr180": 835142400,
+      "expected": {
+        "fused_convs": 10,
+        "params": 26096,
+        "conv_macs_lr180": 835142400
+      },
+      "export_ok": true,
+      "torchscript": "deploy/artifacts/torchscript/sepres_v2_v2_a_c16n8_fused_deploy_720p_rand.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/sepres_v2_v2_a_c16n8_fused_deploy_720p_rand.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/sepres_v2_v2_a_c16n8_fused_deploy_720p_rand.bin",
+      "ncnn_total_size_mb": 0.1013,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "graph_smoke": {
+        "param": "/data/local/tmp/sr_bench/models/sepres_v2_v2_a_c16n8_fused_deploy_720p_rand.param",
+        "bin": "/data/local/tmp/sr_bench/models/sepres_v2_v2_a_c16n8_fused_deploy_720p_rand.bin",
+        "in_blob": "in0",
+        "out_blob": "out0",
+        "input_w": 320,
+        "input_h": 180,
+        "warmup": 20,
+        "iters": 50,
+        "fp16": true,
+        "vulkan": true,
+        "threads": 4,
+        "median_ms": 24.8,
+        "p90_ms": 25.8321,
+        "fps": 40.32,
+        "peak_memory_kb": 108208
+      },
+      "graph_smoke_note": "random-init; not for ranking / 33.3ms / freeze",
+      "pass": true,
+      "errors": []
+    },
+    {
+      "id": "v2_b",
+      "config": "configs/exp/sepres_v2_c16n10_20k.yaml",
+      "init_seed": 0,
+      "num_channel": 16,
+      "num_block": 10,
+      "preset": "deploy_720p",
+      "lr_w": 320,
+      "lr_h": 180,
+      "numerical": {
+        "max_abs": 0.0,
+        "pass": true,
+        "output_shape": [
+          1,
+          3,
+          720,
+          1280
+        ]
+      },
+      "fused_convs": 12,
+      "fused_params": 30768,
+      "conv_macs_lr180": 984441600,
+      "expected": {
+        "fused_convs": 12,
+        "params": 30768,
+        "conv_macs_lr180": 984441600
+      },
+      "export_ok": true,
+      "torchscript": "deploy/artifacts/torchscript/sepres_v2_v2_b_c16n10_fused_deploy_720p_rand.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/sepres_v2_v2_b_c16n10_fused_deploy_720p_rand.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/sepres_v2_v2_b_c16n10_fused_deploy_720p_rand.bin",
+      "ncnn_total_size_mb": 0.1194,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "graph_smoke": {
+        "param": "/data/local/tmp/sr_bench/models/sepres_v2_v2_b_c16n10_fused_deploy_720p_rand.param",
+        "bin": "/data/local/tmp/sr_bench/models/sepres_v2_v2_b_c16n10_fused_deploy_720p_rand.bin",
+        "in_blob": "in0",
+        "out_blob": "out0",
+        "input_w": 320,
+        "input_h": 180,
+        "warmup": 20,
+        "iters": 50,
+        "fp16": true,
+        "vulkan": true,
+        "threads": 4,
+        "median_ms": 29.9397,
+        "p90_ms": 31.0304,
+        "fps": 33.4,
+        "peak_memory_kb": 118476
+      },
+      "graph_smoke_note": "random-init; not for ranking / 33.3ms / freeze",
+      "pass": true,
+      "errors": []
+    },
+    {
+      "id": "v2_c",
+      "config": "configs/exp/sepres_v2_c20n6_20k.yaml",
+      "init_seed": 0,
+      "num_channel": 20,
+      "num_block": 6,
+      "preset": "deploy_720p",
+      "lr_w": 320,
+      "lr_h": 180,
+      "numerical": {
+        "max_abs": 0.0,
+        "pass": true,
+        "output_shape": [
+          1,
+          3,
+          720,
+          1280
+        ]
+      },
+      "fused_convs": 8,
+      "fused_params": 31088,
+      "conv_macs_lr180": 997272000,
+      "expected": {
+        "fused_convs": 8,
+        "params": 31088,
+        "conv_macs_lr180": 997272000
+      },
+      "export_ok": true,
+      "torchscript": "deploy/artifacts/torchscript/sepres_v2_v2_c_c20n6_fused_deploy_720p_rand.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/sepres_v2_v2_c_c20n6_fused_deploy_720p_rand.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/sepres_v2_v2_c_c20n6_fused_deploy_720p_rand.bin",
+      "ncnn_total_size_mb": 0.12,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "graph_smoke": {
+        "param": "/data/local/tmp/sr_bench/models/sepres_v2_v2_c_c20n6_fused_deploy_720p_rand.param",
+        "bin": "/data/local/tmp/sr_bench/models/sepres_v2_v2_c_c20n6_fused_deploy_720p_rand.bin",
+        "in_blob": "in0",
+        "out_blob": "out0",
+        "input_w": 320,
+        "input_h": 180,
+        "warmup": 20,
+        "iters": 50,
+        "fp16": true,
+        "vulkan": true,
+        "threads": 4,
+        "median_ms": 27.868,
+        "p90_ms": 28.6585,
+        "fps": 35.88,
+        "peak_memory_kb": 123952
+      },
+      "graph_smoke_note": "random-init; not for ranking / 33.3ms / freeze",
+      "pass": true,
+      "errors": []
+    }
+  ],
+  "all_pass": true,
+  "promote_hint": {
+    "v2_b": "first train if pass",
+    "v2_a": "gated: only if fewer layers show speed/size potential beyond envelope",
+    "v2_c": "gated: only if quality hopeful and wide/shallow graph passes"
+  }
+}

@@ -28,12 +28,12 @@ conda run -n cv_env python scripts/profile_model.py \
   --device cuda \
   --save-json results/mobile_srnet/profile.json
 
-conda run -n cv_env python scripts/compare_metrics.py \
+conda run -n cv_env python scripts/_inactive/compare_metrics.py \
   --base results/bicubic_metrics.json \
   --target results/mobile_srnet/benchmark_metrics.json \
   > results/mobile_srnet/compare_vs_bicubic.txt
 
-conda run -n cv_env python scripts/compare_metrics.py \
+conda run -n cv_env python scripts/_inactive/compare_metrics.py \
   --base results/fsrcnn_fix_clean/benchmark_metrics.json \
   --target results/mobile_srnet/benchmark_metrics.json \
   > results/mobile_srnet/compare_vs_fsrcnn.txt

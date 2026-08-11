@@ -1,0 +1,46 @@
+[
+  {
+    "run_id": "pecsr_pixel_kd0_2k",
+    "lambda_kd": 0.0,
+    "kd_method": "pixel_charbonnier",
+    "config": "configs/exp/pecsr_pixel_kd0_2k.yaml",
+    "updates_target": 2000,
+    "epochs": 40,
+    "batch_size": 16,
+    "train_script": "train_mobile_srnet_kd.py",
+    "description": "legacy manifest pointer — prefer b5_train_20k_manifest.json"
+  },
+  {
+    "run_id": "pecsr_pixel_kd02_2k",
+    "lambda_kd": 0.2,
+    "kd_method": "pixel_charbonnier",
+    "config": "configs/exp/pecsr_pixel_kd02_2k.yaml",
+    "updates_target": 2000,
+    "epochs": 40,
+    "batch_size": 16,
+    "train_script": "train_mobile_srnet_kd.py",
+    "description": "legacy manifest pointer — prefer b5_train_20k_manifest.json"
+  },
+  {
+    "run_id": "pecsr_vgg3_kd0_2k",
+    "lambda_kd": 0.0,
+    "kd_method": "vgg_relu3",
+    "config": "configs/exp/pecsr_vgg3_kd0_2k.yaml",
+    "updates_target": 2000,
+    "epochs": 40,
+    "batch_size": 16,
+    "train_script": "train_mobile_srnet_kd.py",
+    "description": "legacy manifest pointer — prefer b5_train_20k_manifest.json"
+  },
+  {
+    "run_id": "pecsr_vgg3_kd01_2k",
+    "lambda_kd": 0.01,
+    "kd_method": "vgg_relu3",
+    "config": "configs/exp/pecsr_vgg3_kd01_2k.yaml",
+    "updates_target": 2000,
+    "epochs": 40,
+    "batch_size": 16,
+    "train_script": "train_mobile_srnet_kd.py",
+    "description": "legacy manifest pointer — prefer b5_train_20k_manifest.json"
+  }
+]

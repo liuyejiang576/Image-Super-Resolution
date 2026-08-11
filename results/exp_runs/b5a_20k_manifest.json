@@ -1,0 +1,20 @@
+[
+  {
+    "run_id": "abl_plain3x3_c16n10_20k",
+    "model": "sepres_v2",
+    "variant": "P0_plain",
+    "body_kind": "plain3x3",
+    "num_block": 10,
+    "num_channel": 16,
+    "seed": 42,
+    "config": "configs/exp/abl_plain3x3_c16n10_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "milestones": [364, 516],
+    "loss_type": "mse",
+    "train_script": "train_sepres_v2.py",
+    "phone_policy": "graph_identity_only",
+    "description": "B5a P0: PECSR shell + plain dense body; fused deploy iso-MAC vs PECSR"
+  }
+]

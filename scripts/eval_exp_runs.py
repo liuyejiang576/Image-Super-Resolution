@@ -48,9 +48,15 @@ def main() -> None:
     with out_path.open("w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
 
-    subprocess.run([PYTHON, "scripts/plot_fair_budget.py"], cwd=PROJECT_ROOT, check=False)
-    subprocess.run([PYTHON, "scripts/build_enhanced_report.py"], cwd=PROJECT_ROOT, check=False)
+    report_plot = PROJECT_ROOT.parent / "report" / "plot" / "plot_fair_budget.py"
+    if report_plot.exists():
+        subprocess.run(
+            [PYTHON, str(report_plot)],
+            cwd=str(report_plot.parent),
+            check=False,
+        )
     print(f"Wrote {out_path}")
+    print("Promote to report: copy fair_budget_runs.json → ../report/assets/metrics/ (see ../report/SYNC.md)")
 
 
 if __name__ == "__main__":

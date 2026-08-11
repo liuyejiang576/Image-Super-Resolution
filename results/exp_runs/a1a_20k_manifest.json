@@ -1,0 +1,19 @@
+[
+  {
+    "run_id": "fsrcnn_fix_clean_20k_bs24",
+    "model": "fsrcnn",
+    "variant": "A1a_bs24",
+    "task": "A1a",
+    "config": "configs/exp/fsrcnn_fix_clean_20k_bs24.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "milestones": [
+      364,
+      516
+    ],
+    "loss_type": "mse",
+    "train_script": "train_fsrcnn.py",
+    "description": "A1a: FSRCNN bs=24 / ~20k updates (equal batch+steps vs MobileSRNet)"
+  }
+]

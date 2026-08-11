@@ -1,0 +1,18 @@
+{
+  "gate": "B5a-P0-plain3x3-fuse-budget",
+  "config": "configs/exp/abl_plain3x3_c16n10_20k.yaml",
+  "body_kind": "plain3x3",
+  "eval_vs_fused_max_abs": 0.0,
+  "fused_convs": 12,
+  "fused_params": 30768,
+  "conv_macs_lr180": 984441600,
+  "expected": {
+    "fused_convs": 12,
+    "params": 30768,
+    "conv_macs_lr180": 984441600
+  },
+  "train_params_plain": 30768,
+  "train_params_pecsr_ecb": 95888,
+  "pass": true,
+  "errors": []
+}

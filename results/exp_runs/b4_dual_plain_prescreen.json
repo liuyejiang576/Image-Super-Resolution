@@ -1,0 +1,35 @@
+{
+  "task": "b4_dual_plain_prescreen",
+  "timestamp": "2026-07-11T19:13:42.607740+08:00",
+  "pass": true,
+  "errors": [],
+  "measurement_kind": "graph_smoke",
+  "fuse_max_abs": 8.940696716308594e-08,
+  "atol": 1e-05,
+  "budget": {
+    "params": 27348,
+    "convs": 7,
+    "macs_180": 880632000,
+    "expected": {
+      "fused_convs": 7,
+      "params": 27348,
+      "macs_180": 880632000
+    }
+  },
+  "exports": {
+    "dual_fused": {
+      "stem": "dual_plain_c20n5_graph_smoke_720p",
+      "torchscript": "deploy/artifacts/torchscript/dual_plain_c20n5_graph_smoke_720p.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/dual_plain_c20n5_graph_smoke_720p.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/dual_plain_c20n5_graph_smoke_720p.bin",
+      "bytes": 110354,
+      "in_blob": "in0",
+      "out_blob": "out0"
+    },
+    "plain": {
+      "stem": "plain_c20n5_graph_smoke_720p"
+    }
+  },
+  "phone": null,
+  "note": "Not for D18 phone gate or freeze. Official phone after 2k via run_dual_plain_posttrain.py"
+}

@@ -1,85 +1,32 @@
-# Image Super-Resolution (Mobile-Efficient)
+# PECSR — Mobile-Efficient 4× Super-Resolution
 
-Mobile-efficient 4× super-resolution course project: **MobileSRNet-Plus** beats FSRCNN on quality at lower FLOPs; capacity scaling (Base → Plus) is the main win; KD was tested and rejected.
+**Look first:** [`overview/preview.md`](overview/preview.md) — slide + report page images (GitHub-friendly), plus [`overview.pptx`](overview/overview.pptx) and [`report.pdf`](overview/report.pdf).
 
-## Docs
+PECSR (Plain-Endpoint ECB Super-Resolution) keeps ECBSR’s fused compute budget, uses plain 3×3 endpoints, and drops the global residual. On-device (NCNN Vulkan FP16, LR 180×180): **~14% faster** phone median latency vs ECBSR at a **~0.51%** average-PSNR cost.
 
-| File | Role |
-|---|---|
-| `results/final_report.md` | Submission report (headline results) |
-| `results/MANIFEST.md` | Which runs/artifacts are active vs inactive |
-| `report_plan.md` | Experiment checklist (complete) |
-| `proposal.md` | Original proposal |
-| `_inactive/` | Superseded docs (`exp_plan.md`, `progress.md`, …) |
-| `docs/ablation_tracking.md` | Ablation notes |
+![Title slide](overview/slides/slide-01.png)
 
-Master file registry (active/inactive across the whole `CV_project/` tree, **outside this git repo**): `../codebase.md`
-
-## Headline results (fair-budget 20k)
-
-| Model | Avg PSNR | FLOPs (G) | Checkpoint |
-|---|---:|---:|---|
-| FSRCNN | 26.820 | 7.408 | `results/_headline/checkpoints/fsrcnn_20k.pt` |
-| MobileSRNet-Base | 27.159 | 0.976 | `results/_headline/checkpoints/mobile_srnet_base_20k.pt` |
-| **MobileSRNet-Plus** | **27.331** | 2.163 | `results/_headline/checkpoints/mobile_srnet_plus_20k.pt` |
-
-Checkpoints are local only (gitignored). Metrics JSON is tracked under `results/exp_runs/*/benchmark_metrics.json`.
+![Report first page](overview/report_pages/page-01.png)
 
 ## Quick start
 
 ```bash
 pip install -r requirements.txt
 python scripts/check_env.py
-python scripts/sanity_check_data.py --config configs/data.yaml --num-samples 4 --output-dir results/sanity
 ```
 
-## Reproduce headline eval / figures
+Eval / train / phone deploy: `IMPLEMENTATION.md`, `configs/README.md`, `deploy/DEPLOY.md`.  
+Class demo (adb + NCNN, no APK): `deploy/demo/README.md`.
 
-```bash
-# Eval Plus on benchmarks
-python scripts/eval_sr.py \
-  --checkpoint results/exp_runs/mobile_srnet_plus_20k/checkpoints/best.pt \
-  --save-json results/exp_runs/mobile_srnet_plus_20k/benchmark_metrics.json \
-  --compute-lpips
-
-# Figures
-python scripts/make_qualitative_panels.py
-python scripts/plot_flops_vs_latency.py
-python scripts/plot_training_analysis.py
-python scripts/audit_latency.py
-```
-
-## Training (reference)
-
-Fair-budget configs live in `configs/exp/`:
-
-- `fsrcnn_fix_clean_20k.yaml`
-- `mobile_srnet_20k.yaml`
-- `mobile_srnet_plus_20k.yaml`
-
-Plus 20k launcher: `python scripts/plus_20k.py watch|pause|resume`
-
-General pipeline: `python scripts/run_exp_pipeline.py --config configs/exp/<name>.yaml`
-
-## Data
-
-Datasets are gitignored. Local layout:
-
-- `data/div2k/`
-- `data/benchmarks/`
-
-Or symlink from `../data/` at the `CV_project` level.
-
-## Repo layout
+## Layout
 
 ```
-configs/            Active configs (`configs/exp/` = headline 20k runs)
-configs/_inactive/  Superseded configs (10k, 2k probes)
-scripts/            Training, eval, plotting, experiment runners
-scripts/_inactive/  One-off sweep/launcher scripts
-src/                Models (mobile_srnet, fsrcnn) and utilities
-results/            Local artifacts; see MANIFEST.md
-results/_inactive/  Superseded runs (local only)
-results/_headline/  Symlinks to best checkpoints (local only)
-_inactive/          Superseded root docs
+overview/     Slides + report (PNG previews + pptx/pdf)
+src/          Models (PECSR / ECBSR / FSRCNN, …)
+configs/exp/  Locked training recipes
+scripts/      Train / eval / export / demo
+deploy/       NCNN / phone bench / class demo
+results/      Small metrics JSON (checkpoints gitignored)
 ```
+
+Data (`DIV2K`, benchmarks) and `.pt` checkpoints stay local.

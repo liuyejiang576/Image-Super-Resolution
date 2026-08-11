@@ -1,0 +1,30 @@
+{
+  "description": "Frozen 20k fair-budget results (MSE, Adam, seed 42). Used as baseline for 30k stability comparison.",
+  "label": "20k + ~10k low-LR fine-tuning (not a fresh 30k-from-scratch recipe)",
+  "models": {
+    "fsrcnn_fix_clean_30k": {
+      "source_run_id": "fsrcnn_fix_clean_20k",
+      "frozen_epoch": 200,
+      "frozen_global_step": 20000,
+      "frozen_val_psnr": 27.4769,
+      "frozen_best_val_psnr": 27.4818,
+      "frozen_avg_psnr_benchmarks": 26.82
+    },
+    "mobile_srnet_30k": {
+      "source_run_id": "mobile_srnet_20k",
+      "frozen_epoch": 607,
+      "frozen_global_step": 20031,
+      "frozen_val_psnr": 27.7994,
+      "frozen_best_val_psnr": 27.7994,
+      "frozen_avg_psnr_benchmarks": 27.16
+    },
+    "mobile_srnet_plus_30k": {
+      "source_run_id": "mobile_srnet_plus_20k",
+      "frozen_epoch": 607,
+      "frozen_global_step": 20031,
+      "frozen_val_psnr": 27.9364,
+      "frozen_best_val_psnr": 27.9364,
+      "frozen_avg_psnr_benchmarks": 27.33
+    }
+  }
+}

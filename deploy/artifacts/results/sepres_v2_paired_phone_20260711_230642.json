@@ -1,0 +1,230 @@
+{
+  "timestamp": "2026-07-11T23:06:42.878781+08:00",
+  "task": "B4_v2_paired_phone",
+  "mode": "graph_smoke",
+  "protocol": {
+    "warmup": 50,
+    "iters": 300,
+    "lr_w": 180,
+    "lr_h": 180,
+    "backend": "ncnn_vulkan_fp16"
+  },
+  "sessions": [
+    {
+      "session_index": 0,
+      "order": [
+        "v2",
+        "ecbsr"
+      ],
+      "timestamp": "2026-07-11T23:06:16.433988+08:00",
+      "runs": [
+        {
+          "model_key": "v2",
+          "median_ms": 15.1045,
+          "p90_ms": 16.8481,
+          "fps": 66.21,
+          "peak_memory_kb": 83664,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_audit_180_smoke.param",
+            "bin": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_audit_180_smoke.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 15.1045,
+            "p90_ms": 16.8481,
+            "fps": 66.21,
+            "peak_memory_kb": 83664
+          }
+        },
+        {
+          "model_key": "ecbsr",
+          "median_ms": 15.4505,
+          "p90_ms": 17.5942,
+          "fps": 64.72,
+          "peak_memory_kb": 82624,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_audit_180_smoke.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_audit_180_smoke.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 15.4505,
+            "p90_ms": 17.5942,
+            "fps": 64.72,
+            "peak_memory_kb": 82624
+          }
+        }
+      ]
+    },
+    {
+      "session_index": 1,
+      "order": [
+        "ecbsr",
+        "v2"
+      ],
+      "timestamp": "2026-07-11T23:06:29.172697+08:00",
+      "runs": [
+        {
+          "model_key": "ecbsr",
+          "median_ms": 16.2883,
+          "p90_ms": 18.0548,
+          "fps": 61.39,
+          "peak_memory_kb": 82464,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_audit_180_smoke.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_audit_180_smoke.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 16.2883,
+            "p90_ms": 18.0548,
+            "fps": 61.39,
+            "peak_memory_kb": 82464
+          }
+        },
+        {
+          "model_key": "v2",
+          "median_ms": 15.5329,
+          "p90_ms": 17.8806,
+          "fps": 64.38,
+          "peak_memory_kb": 85240,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_audit_180_smoke.param",
+            "bin": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_audit_180_smoke.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 15.5329,
+            "p90_ms": 17.8806,
+            "fps": 64.38,
+            "peak_memory_kb": 85240
+          }
+        }
+      ]
+    },
+    {
+      "session_index": 2,
+      "order": [
+        "v2",
+        "ecbsr"
+      ],
+      "timestamp": "2026-07-11T23:06:42.878077+08:00",
+      "runs": [
+        {
+          "model_key": "v2",
+          "median_ms": 15.8735,
+          "p90_ms": 18.2319,
+          "fps": 63.0,
+          "peak_memory_kb": 85104,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_audit_180_smoke.param",
+            "bin": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_audit_180_smoke.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 15.8735,
+            "p90_ms": 18.2319,
+            "fps": 63.0,
+            "peak_memory_kb": 85104
+          }
+        },
+        {
+          "model_key": "ecbsr",
+          "median_ms": 16.9919,
+          "p90_ms": 18.7512,
+          "fps": 58.85,
+          "peak_memory_kb": 81280,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_audit_180_smoke.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_audit_180_smoke.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 180,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 16.9919,
+            "p90_ms": 18.7512,
+            "fps": 58.85,
+            "peak_memory_kb": 81280
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "v2": {
+      "median_ms": {
+        "values": [
+          15.1045,
+          15.5329,
+          15.8735
+        ],
+        "mean": 15.503633333333333,
+        "range": 0.7690000000000001
+      },
+      "p90_ms": {
+        "values": [
+          16.8481,
+          17.8806,
+          18.2319
+        ],
+        "mean": 17.653533333333332,
+        "range": 1.3838000000000008
+      }
+    },
+    "ecbsr": {
+      "median_ms": {
+        "values": [
+          15.4505,
+          16.2883,
+          16.9919
+        ],
+        "mean": 16.243566666666666,
+        "range": 1.5414000000000012
+      },
+      "p90_ms": {
+        "values": [
+          17.5942,
+          18.0548,
+          18.7512
+        ],
+        "mean": 18.133399999999998,
+        "range": 1.157
+      }
+    }
+  }
+}

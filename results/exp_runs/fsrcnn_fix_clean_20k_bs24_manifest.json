@@ -1,0 +1,19 @@
+{
+  "run_id": "fsrcnn_fix_clean_20k_bs24",
+  "task": "A1a",
+  "model": "fsrcnn",
+  "config": "configs/exp/fsrcnn_fix_clean_20k_bs24.yaml",
+  "updates_target": 20000,
+  "epochs": 607,
+  "batch_size": 24,
+  "steps_per_epoch": 33,
+  "milestones": [
+    364,
+    516
+  ],
+  "patches_seen_approx": 480000,
+  "protocol": "same updates + same bs as MobileSRNet 20k (Tier 1a)",
+  "baseline_compare": "results/exp_runs/fsrcnn_fix_clean_20k (bs=8)",
+  "seed": 42,
+  "loss": "mse"
+}

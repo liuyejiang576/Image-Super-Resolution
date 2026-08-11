@@ -1,0 +1,32 @@
+{
+  "task": "b4_dual_plain_posttrain",
+  "timestamp": "2026-07-11T19:13:52.731355+08:00",
+  "smoke": true,
+  "official": false,
+  "run_id": "dual_stream_c20n5_2k",
+  "checkpoint": "/home/hyb/CV_project/Image-Super-Resolution/results/exp_runs/dual_stream_c20n5_2k/checkpoints/latest.pt",
+  "kind": "dual_stream_sr",
+  "fuse_max_abs": 7.152557373046875e-07,
+  "budget": {
+    "params": 27348,
+    "convs": 7,
+    "macs_180": 880632000,
+    "expected": {
+      "fused_convs": 7,
+      "params": 27348,
+      "macs_180": 880632000
+    },
+    "match": true
+  },
+  "export": {
+    "stem": "dual_stream_c20n5_2k_smoke_720p",
+    "torchscript": "deploy/artifacts/torchscript/dual_stream_c20n5_2k_smoke_720p.pt",
+    "ncnn_param": "deploy/artifacts/ncnn/dual_stream_c20n5_2k_smoke_720p.param",
+    "ncnn_bin": "deploy/artifacts/ncnn/dual_stream_c20n5_2k_smoke_720p.bin",
+    "bytes": 110354,
+    "in_blob": "in0",
+    "out_blob": "out0"
+  },
+  "sessions_requested": 0,
+  "note": "Smoke/export only."
+}

@@ -100,8 +100,10 @@ cmd_status() {
     echo "  NOT running"
   fi
   echo
-  echo "=== KD sweep ==="
-  bash scripts/kd_sweep.sh status 2>/dev/null | head -14 || echo "  (kd_sweep status unavailable)"
+  echo "=== training (hint) ==="
+  echo "  python scripts/exp_status.py"
+  echo "  python scripts/arch_30k.py watch   # if 30k continuation"
+  echo "  python scripts/plus_20k.py watch   # if Plus 20k"
 }
 
 case "${1:-}" in
@@ -116,7 +118,7 @@ Usage: bash scripts/keep_awake.sh {lock|start|stop|status}
   lock    Apply powercfg never-sleep (no admin). Safe to run repeatedly.
   start   lock + start keep-awake PowerShell loop (recommended before sleep).
   stop    Stop keep-awake after training finishes.
-  status  keep-awake + KD sweep summary.
+  status  keep-awake status + pointers to train watchers.
 USAGE
     exit 1 ;;
 esac

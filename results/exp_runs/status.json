@@ -1,55 +1,15 @@
 {
-  "total_runs": 8,
-  "done": 8,
+  "total_runs": 4,
+  "done": 4,
   "running": [],
   "pending": [],
   "kd_running": 0,
   "gpu": {
-    "memory_used_mib": "450",
+    "memory_used_mib": "1599",
     "memory_total_mib": "8188",
-    "utilization_pct": "0"
+    "utilization_pct": "87"
   },
   "runs": [
-    {
-      "run_id": "fsrcnn_fix_clean_10k",
-      "model": "fsrcnn",
-      "lambda_kd": null,
-      "updates_target": 10000,
-      "target_epochs": 100,
-      "done": true,
-      "running": false,
-      "epoch": 100,
-      "global_step": 10000,
-      "val_psnr": 27.180485585215838,
-      "best_val_psnr": 27.184784521842275,
-      "best_epoch": 96,
-      "lr": 0.00025,
-      "elapsed_sec": 42.488898038864136,
-      "progress_pct": 100.0,
-      "has_checkpoint": true,
-      "has_benchmark_eval": true,
-      "state": "done"
-    },
-    {
-      "run_id": "mobile_srnet_10k",
-      "model": "mobile_srnet",
-      "lambda_kd": null,
-      "updates_target": 10000,
-      "target_epochs": 304,
-      "done": true,
-      "running": false,
-      "epoch": 304,
-      "global_step": 10032,
-      "val_psnr": 27.571987872620134,
-      "best_val_psnr": 27.571987872620134,
-      "best_epoch": 304,
-      "lr": 0.00025,
-      "elapsed_sec": 37.2369282245636,
-      "progress_pct": 100.0,
-      "has_checkpoint": true,
-      "has_benchmark_eval": true,
-      "state": "done"
-    },
     {
       "run_id": "fsrcnn_fix_clean_20k",
       "model": "fsrcnn",
@@ -85,46 +45,6 @@
       "best_epoch": 607,
       "lr": 0.00025,
       "elapsed_sec": 31.352205753326416,
-      "progress_pct": 100.0,
-      "has_checkpoint": true,
-      "has_benchmark_eval": true,
-      "state": "done"
-    },
-    {
-      "run_id": "mobile_srnet_kd0_10k",
-      "model": "mobile_srnet_kd",
-      "lambda_kd": 0.0,
-      "updates_target": 10000,
-      "target_epochs": 200,
-      "done": true,
-      "running": false,
-      "epoch": 200,
-      "global_step": 10000,
-      "val_psnr": 27.48160647341038,
-      "best_val_psnr": 27.48160647341038,
-      "best_epoch": 200,
-      "lr": 0.00025,
-      "elapsed_sec": 81.1991982460022,
-      "progress_pct": 100.0,
-      "has_checkpoint": true,
-      "has_benchmark_eval": true,
-      "state": "done"
-    },
-    {
-      "run_id": "mobile_srnet_kd02_10k",
-      "model": "mobile_srnet_kd",
-      "lambda_kd": 0.2,
-      "updates_target": 10000,
-      "target_epochs": 200,
-      "done": true,
-      "running": false,
-      "epoch": 200,
-      "global_step": 10000,
-      "val_psnr": 27.491518609224812,
-      "best_val_psnr": 27.491918561901556,
-      "best_epoch": 197,
-      "lr": 0.00025,
-      "elapsed_sec": 75.37084460258484,
       "progress_pct": 100.0,
       "has_checkpoint": true,
       "has_benchmark_eval": true,
@@ -171,5 +91,5 @@
       "state": "done"
     }
   ],
-  "updated_at": "2026-07-05T12:38:35.257438+00:00"
+  "updated_at": "2026-07-10T15:52:55.167655+00:00"
 }

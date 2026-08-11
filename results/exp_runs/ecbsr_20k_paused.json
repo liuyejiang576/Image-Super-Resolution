@@ -1,0 +1,12 @@
+{
+  "paused_at": "2026-07-10T23:38:14.171816+08:00",
+  "runs": [
+    {
+      "run_id": "ecbsr_m10c16_20k",
+      "variant": "M10C16",
+      "epoch": 394,
+      "target_epochs": 607,
+      "resume_from": "results/exp_runs/ecbsr_m10c16_20k/checkpoints/latest.pt"
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Train FSRCNN baseline on DIV2K with periodic validation."""
+"""Train FSRCNN baseline on DIV2K with periodic validation.
+
+For A1a (bs24 / 20k) prefer the control plane:
+
+  python scripts/a1a_20k.py resume
+  python scripts/a1a_20k.py watch --interval 60
+"""
 
 from __future__ import annotations
 

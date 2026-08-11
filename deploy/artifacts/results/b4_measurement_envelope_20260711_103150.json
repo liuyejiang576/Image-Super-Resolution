@@ -1,0 +1,267 @@
+{
+  "timestamp": "2026-07-11T10:31:50.437903+08:00",
+  "task": "B4_measurement_envelope",
+  "gate": "Gate-1-phone-envelope",
+  "protocol": {
+    "warmup": 50,
+    "iters": 300,
+    "lr_w": 320,
+    "lr_h": 180,
+    "fp16": true,
+    "vulkan": true,
+    "backend": "ncnn_vulkan",
+    "device_dir": "/data/local/tmp/sr_bench"
+  },
+  "sessions": [
+    {
+      "session_index": 0,
+      "order": [
+        "lite_sep",
+        "ecbsr_fused"
+      ],
+      "timestamp": "2026-07-11T10:30:58.907834+08:00",
+      "runs": [
+        {
+          "model_key": "lite_sep",
+          "label": "SepResSR-Lite sep",
+          "ncnn_param": "deploy/artifacts/ncnn/mobile_srnet_base_sep_deploy_720p.param",
+          "ncnn_bin": "deploy/artifacts/ncnn/mobile_srnet_base_sep_deploy_720p.bin",
+          "median_ms": 35.8951,
+          "p90_ms": 38.123,
+          "fps": 27.86,
+          "peak_memory_kb": 134724,
+          "warmup": 50,
+          "iters": 300,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/mobile_srnet_base_sep_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/mobile_srnet_base_sep_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 35.8951,
+            "p90_ms": 38.123,
+            "fps": 27.86,
+            "peak_memory_kb": 134724
+          }
+        },
+        {
+          "model_key": "ecbsr_fused",
+          "label": "ECBSR-M10C16 fused",
+          "ncnn_param": "deploy/artifacts/ncnn/ecbsr_m10c16_fused_deploy_720p_dryrun.param",
+          "ncnn_bin": "deploy/artifacts/ncnn/ecbsr_m10c16_fused_deploy_720p_dryrun.bin",
+          "median_ms": 31.034,
+          "p90_ms": 32.0232,
+          "fps": 32.22,
+          "peak_memory_kb": 114652,
+          "warmup": 50,
+          "iters": 300,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p_dryrun.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p_dryrun.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 31.034,
+            "p90_ms": 32.0232,
+            "fps": 32.22,
+            "peak_memory_kb": 114652
+          }
+        }
+      ],
+      "excluded": false,
+      "exclusion_reason": null
+    },
+    {
+      "session_index": 1,
+      "order": [
+        "ecbsr_fused",
+        "lite_sep"
+      ],
+      "timestamp": "2026-07-11T10:31:23.264998+08:00",
+      "runs": [
+        {
+          "model_key": "ecbsr_fused",
+          "label": "ECBSR-M10C16 fused",
+          "ncnn_param": "deploy/artifacts/ncnn/ecbsr_m10c16_fused_deploy_720p_dryrun.param",
+          "ncnn_bin": "deploy/artifacts/ncnn/ecbsr_m10c16_fused_deploy_720p_dryrun.bin",
+          "median_ms": 30.9606,
+          "p90_ms": 31.9731,
+          "fps": 32.3,
+          "peak_memory_kb": 114328,
+          "warmup": 50,
+          "iters": 300,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p_dryrun.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p_dryrun.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 30.9606,
+            "p90_ms": 31.9731,
+            "fps": 32.3,
+            "peak_memory_kb": 114328
+          }
+        },
+        {
+          "model_key": "lite_sep",
+          "label": "SepResSR-Lite sep",
+          "ncnn_param": "deploy/artifacts/ncnn/mobile_srnet_base_sep_deploy_720p.param",
+          "ncnn_bin": "deploy/artifacts/ncnn/mobile_srnet_base_sep_deploy_720p.bin",
+          "median_ms": 35.6148,
+          "p90_ms": 36.8817,
+          "fps": 28.08,
+          "peak_memory_kb": 134960,
+          "warmup": 50,
+          "iters": 300,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/mobile_srnet_base_sep_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/mobile_srnet_base_sep_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 35.6148,
+            "p90_ms": 36.8817,
+            "fps": 28.08,
+            "peak_memory_kb": 134960
+          }
+        }
+      ],
+      "excluded": false,
+      "exclusion_reason": null
+    },
+    {
+      "session_index": 2,
+      "order": [
+        "lite_sep",
+        "ecbsr_fused"
+      ],
+      "timestamp": "2026-07-11T10:31:50.437779+08:00",
+      "runs": [
+        {
+          "model_key": "lite_sep",
+          "label": "SepResSR-Lite sep",
+          "ncnn_param": "deploy/artifacts/ncnn/mobile_srnet_base_sep_deploy_720p.param",
+          "ncnn_bin": "deploy/artifacts/ncnn/mobile_srnet_base_sep_deploy_720p.bin",
+          "median_ms": 36.0896,
+          "p90_ms": 37.6649,
+          "fps": 27.71,
+          "peak_memory_kb": 134548,
+          "warmup": 50,
+          "iters": 300,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/mobile_srnet_base_sep_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/mobile_srnet_base_sep_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 36.0896,
+            "p90_ms": 37.6649,
+            "fps": 27.71,
+            "peak_memory_kb": 134548
+          }
+        },
+        {
+          "model_key": "ecbsr_fused",
+          "label": "ECBSR-M10C16 fused",
+          "ncnn_param": "deploy/artifacts/ncnn/ecbsr_m10c16_fused_deploy_720p_dryrun.param",
+          "ncnn_bin": "deploy/artifacts/ncnn/ecbsr_m10c16_fused_deploy_720p_dryrun.bin",
+          "median_ms": 30.6495,
+          "p90_ms": 32.4743,
+          "fps": 32.63,
+          "peak_memory_kb": 114560,
+          "warmup": 50,
+          "iters": 300,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p_dryrun.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p_dryrun.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 30.6495,
+            "p90_ms": 32.4743,
+            "fps": 32.63,
+            "peak_memory_kb": 114560
+          }
+        }
+      ],
+      "excluded": false,
+      "exclusion_reason": null
+    }
+  ],
+  "by_model": {
+    "lite_sep": {
+      "label": "SepResSR-Lite sep",
+      "median_ms": [
+        35.8951,
+        35.6148,
+        36.0896
+      ],
+      "p90_ms": [
+        38.123,
+        36.8817,
+        37.6649
+      ],
+      "median_range": 0.4747999999999948,
+      "p90_range": 1.2412999999999954,
+      "median_mean": 35.8665,
+      "p90_mean": 37.556533333333334
+    },
+    "ecbsr_fused": {
+      "label": "ECBSR-M10C16 fused",
+      "median_ms": [
+        31.034,
+        30.9606,
+        30.6495
+      ],
+      "p90_ms": [
+        32.0232,
+        31.9731,
+        32.4743
+      ],
+      "median_range": 0.3844999999999992,
+      "p90_range": 0.5012000000000008,
+      "median_mean": 30.881366666666665,
+      "p90_mean": 32.156866666666666
+    }
+  },
+  "E_med_ms": 0.4747999999999948,
+  "E_p90_ms": 1.2412999999999954,
+  "definition": "E_med / E_p90 = max same-model cross-session range over Lite-sep and ECBSR-fused. Candidate vs ECBSR differences inside the corresponding envelope are ties.",
+  "historical_note": "Prior Lite A0 vs B1 median gap ~3.1 ms is a lower-bound sanity check; this file supersedes that estimate for B4 decisions."
+}

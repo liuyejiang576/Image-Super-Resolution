@@ -1,0 +1,147 @@
+{
+  "artifact": "ablation_b5a_p0",
+  "date": "2026-07-12",
+  "protocol": "MSE 20k updates, bs=24, seed=42; same fair recipe; DIV2K val select; Y-PSNR/SSIM + RGB LPIPS on Set5/14/BSD100/Urban100",
+  "factor": "body_kind=plain3x3 vs PECSR body_kind=ecb (same plain head/tail, no global skip, C16N10, fused iso-MAC 30768/0.984G)",
+  "fuse_gate": "results/exp_runs/b5a_plain_fuse_smoke.json",
+  "phone": "graph-identity only (iso fused graph); no multi-session rank",
+  "runs": {
+    "plain3x3": {
+      "run_id": "abl_plain3x3_c16n10_20k",
+      "val": {
+        "best_val_psnr": 27.641845995796285,
+        "final_val_psnr": 27.637572026166154,
+        "last20_mean": 27.604322628412593,
+        "last20_std": 0.057435084882625415,
+        "E_2std": 0.11487016976525083,
+        "epochs": 607,
+        "global_step": 20031
+      },
+      "benchmark": {
+        "Set5": {
+          "psnr": 30.046480428590293,
+          "ssim": 0.8502907506647575,
+          "lpips": 0.12171479687094688
+        },
+        "Set14": {
+          "psnr": 27.174005976189285,
+          "ssim": 0.7447338596610168,
+          "lpips": 0.16453234904578753
+        },
+        "BSD100": {
+          "psnr": 26.71524566034619,
+          "ssim": 0.7065739449092969,
+          "lpips": 0.17497556567192077
+        },
+        "Urban100": {
+          "psnr": 24.133859423677908,
+          "ssim": 0.706506863444857,
+          "lpips": 0.23586453102529048
+        },
+        "avg_psnr": 27.01739787220092,
+        "avg_ssim": 0.752026354669982,
+        "avg_lpips": 0.1742718106534864
+      }
+    },
+    "PECSR": {
+      "run_id": "sepres_v2_c16n10_20k",
+      "val": {
+        "best_val_psnr": 27.961534925118595,
+        "final_val_psnr": 27.87987706999969,
+        "last20_mean": 27.913608213591054,
+        "last20_std": 0.03766849310405077,
+        "E_2std": 0.07533698620810154,
+        "epochs": 607,
+        "global_step": 20031
+      },
+      "benchmark": {
+        "Set5": {
+          "psnr": 30.497646614743832,
+          "ssim": 0.86254973852255,
+          "lpips": 0.10114067196846008
+        },
+        "Set14": {
+          "psnr": 27.583092947377303,
+          "ssim": 0.7558818529903507,
+          "lpips": 0.14699036787663186
+        },
+        "BSD100": {
+          "psnr": 26.91541016232604,
+          "ssim": 0.7137810616325213,
+          "lpips": 0.1633377856016159
+        },
+        "Urban100": {
+          "psnr": 24.487388294060924,
+          "ssim": 0.723131714706081,
+          "lpips": 0.21388241153210402
+        },
+        "avg_psnr": 27.370884504627025,
+        "avg_ssim": 0.7638360919628757,
+        "avg_lpips": 0.15633780924470297
+      }
+    },
+    "ECBSR": {
+      "run_id": "ecbsr_m10c16_20k",
+      "val": {
+        "best_val_psnr": 28.023950777097912,
+        "final_val_psnr": 28.007715186929403,
+        "last20_mean": 28.00162161120563,
+        "last20_std": 0.011786014305312993,
+        "E_2std": 0.023572028610625986,
+        "epochs": 607,
+        "global_step": 20031
+      },
+      "benchmark": {
+        "Set5": {
+          "psnr": 30.69618351919069,
+          "ssim": 0.8670962254961736,
+          "lpips": 0.08870254978537559
+        },
+        "Set14": {
+          "psnr": 27.675130606798103,
+          "ssim": 0.75808898701492,
+          "lpips": 0.13703688287309237
+        },
+        "BSD100": {
+          "psnr": 26.992873855691542,
+          "ssim": 0.7164295381000642,
+          "lpips": 0.15397350162267684
+        },
+        "Urban100": {
+          "psnr": 24.663934602180053,
+          "ssim": 0.730476505079591,
+          "lpips": 0.1968928361311555
+        },
+        "avg_psnr": 27.507030645965095,
+        "avg_ssim": 0.7680228139226872,
+        "avg_lpips": 0.14415144260307508
+      }
+    }
+  },
+  "E_val_max_2std_last20": 0.11487016976525083,
+  "deltas": {
+    "plain_minus_PECSR": {
+      "best_val": -0.31968892932231086,
+      "avg_bench_psnr": -0.35348663242610456,
+      "avg_bench_lpips": 0.01793400140878343
+    },
+    "plain_minus_ECBSR": {
+      "best_val": -0.38210478130162784,
+      "avg_bench_psnr": -0.4896327737641748
+    },
+    "PECSR_minus_ECBSR": {
+      "best_val": -0.06241585197931698,
+      "avg_bench_psnr": -0.13614614133807024
+    }
+  },
+  "verdict": {
+    "finding": "ECB multi-branch train body is a major quality driver vs plain 3x3 body under iso fused deploy cost",
+    "plain_vs_PECSR_best_val_db": -0.3197,
+    "exceeds_E_val": true,
+    "E_val": 0.1149,
+    "explains_PECSR_ECBSR_gap": false,
+    "note": "PECSR\u2194ECBSR residual is shell (ends + global skip), not body; both use ECB body. P0 does not attribute that small gap.",
+    "stop_rule_skip_P1_P2": "not_met_if_goal_is_shell_attribution; optional_skip_if_ROI_only_needs_body_story",
+    "recommend_P1_P2": "optional \u2014 open only if report needs single-factor shell attribution beyond multi-factor PECSR vs ECBSR prose"
+  }
+}

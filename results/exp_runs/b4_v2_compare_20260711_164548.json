@@ -1,0 +1,344 @@
+{
+  "timestamp": "2026-07-11T16:45:48.721383+08:00",
+  "task": "B4_v2_compare",
+  "gate": "Gate-2-posttrain",
+  "mode": "trained_official",
+  "official": true,
+  "run_id": "sepres_v2_c16n10_20k",
+  "ecbsr_run_id": "ecbsr_m10c16_20k",
+  "measurement_kind": "trained_official",
+  "envelope": {
+    "path": "results/exp_runs/b4_measurement_envelope.json",
+    "E_med_ms": 0.4747999999999948,
+    "E_p90_ms": 1.2412999999999954
+  },
+  "E_val": {
+    "E_val_db": 0.07533698620810154,
+    "candidate_last_n": 20,
+    "reference_last_n": 20,
+    "candidate_2std": 0.07533698620810154,
+    "reference_2std": 0.023572028610625986,
+    "candidate_best_val_psnr": 27.961534925118595,
+    "candidate_final_val_psnr": 27.87987706999969,
+    "reference_best_val_psnr": 28.023950777097912
+  },
+  "exports": {
+    "v2": {
+      "checkpoint": "results/exp_runs/sepres_v2_c16n10_20k/checkpoints/best.pt",
+      "stem": "sepres_v2_c16n10_fused_deploy_720p",
+      "kind": "sepres_v2",
+      "numerical": {
+        "max_abs": 0.0,
+        "pass": true,
+        "output_shape": [
+          1,
+          3,
+          720,
+          1280
+        ]
+      },
+      "budget": {
+        "num_channel": 16,
+        "num_block": 10,
+        "fused_convs": 12,
+        "params": 30768,
+        "conv_macs_lr180": 984441600,
+        "expected_params": 30768,
+        "expected_macs": 984441600,
+        "expected_convs": 12
+      },
+      "torchscript": "deploy/artifacts/torchscript/sepres_v2_c16n10_fused_deploy_720p.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/sepres_v2_c16n10_fused_deploy_720p.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/sepres_v2_c16n10_fused_deploy_720p.bin",
+      "ncnn_bytes": 125238,
+      "ncnn_total_size_mb": 0.1194,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "config_snapshot": {
+        "act_type": "prelu",
+        "depth_multiplier": 2.0,
+        "num_block": 10,
+        "num_channel": 16,
+        "num_channels": 3,
+        "type": "sepres_v2",
+        "with_idt": true
+      }
+    },
+    "ecbsr": {
+      "checkpoint": "results/exp_runs/ecbsr_m10c16_20k/checkpoints/best.pt",
+      "stem": "ecbsr_m10c16_fused_deploy_720p",
+      "kind": "ecbsr",
+      "numerical": {
+        "max_abs": 0.0,
+        "pass": true,
+        "output_shape": [
+          1,
+          3,
+          720,
+          1280
+        ]
+      },
+      "budget": {
+        "params": 30784,
+        "num_block": 10,
+        "num_channel": 16
+      },
+      "torchscript": "deploy/artifacts/torchscript/ecbsr_m10c16_fused_deploy_720p.pt",
+      "ncnn_param": "deploy/artifacts/ncnn/ecbsr_m10c16_fused_deploy_720p.param",
+      "ncnn_bin": "deploy/artifacts/ncnn/ecbsr_m10c16_fused_deploy_720p.bin",
+      "ncnn_bytes": 125723,
+      "ncnn_total_size_mb": 0.1199,
+      "in_blob": "in0",
+      "out_blob": "out0",
+      "config_snapshot": {
+        "act_type": "prelu",
+        "depth_multiplier": 2.0,
+        "num_block": 10,
+        "num_channel": 16,
+        "num_channels": 3,
+        "type": "ecbsr",
+        "with_idt": true
+      }
+    }
+  },
+  "phone_sessions": [
+    {
+      "session_index": 0,
+      "order": [
+        "v2",
+        "ecbsr"
+      ],
+      "timestamp": "2026-07-11T16:45:03.854052+08:00",
+      "runs": [
+        {
+          "model_key": "v2",
+          "median_ms": 24.9455,
+          "p90_ms": 28.2895,
+          "fps": 40.09,
+          "peak_memory_kb": 119132,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 24.9455,
+            "p90_ms": 28.2895,
+            "fps": 40.09,
+            "peak_memory_kb": 119132
+          }
+        },
+        {
+          "model_key": "ecbsr",
+          "median_ms": 26.4326,
+          "p90_ms": 29.8121,
+          "fps": 37.83,
+          "peak_memory_kb": 114236,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 26.4326,
+            "p90_ms": 29.8121,
+            "fps": 37.83,
+            "peak_memory_kb": 114236
+          }
+        }
+      ]
+    },
+    {
+      "session_index": 1,
+      "order": [
+        "ecbsr",
+        "v2"
+      ],
+      "timestamp": "2026-07-11T16:45:23.297152+08:00",
+      "runs": [
+        {
+          "model_key": "ecbsr",
+          "median_ms": 26.1923,
+          "p90_ms": 29.9247,
+          "fps": 38.18,
+          "peak_memory_kb": 114540,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 26.1923,
+            "p90_ms": 29.9247,
+            "fps": 38.18,
+            "peak_memory_kb": 114540
+          }
+        },
+        {
+          "model_key": "v2",
+          "median_ms": 23.8034,
+          "p90_ms": 29.0842,
+          "fps": 42.01,
+          "peak_memory_kb": 119544,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 23.8034,
+            "p90_ms": 29.0842,
+            "fps": 42.01,
+            "peak_memory_kb": 119544
+          }
+        }
+      ]
+    },
+    {
+      "session_index": 2,
+      "order": [
+        "v2",
+        "ecbsr"
+      ],
+      "timestamp": "2026-07-11T16:45:44.072451+08:00",
+      "runs": [
+        {
+          "model_key": "v2",
+          "median_ms": 25.7068,
+          "p90_ms": 30.0971,
+          "fps": 38.9,
+          "peak_memory_kb": 118860,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/sepres_v2_c16n10_fused_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 25.7068,
+            "p90_ms": 30.0971,
+            "fps": 38.9,
+            "peak_memory_kb": 118860
+          }
+        },
+        {
+          "model_key": "ecbsr",
+          "median_ms": 26.3921,
+          "p90_ms": 30.5516,
+          "fps": 37.89,
+          "peak_memory_kb": 114456,
+          "raw": {
+            "param": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p.param",
+            "bin": "/data/local/tmp/sr_bench/models/ecbsr_m10c16_fused_deploy_720p.bin",
+            "in_blob": "in0",
+            "out_blob": "out0",
+            "input_w": 320,
+            "input_h": 180,
+            "warmup": 50,
+            "iters": 300,
+            "fp16": true,
+            "vulkan": true,
+            "threads": 4,
+            "median_ms": 26.3921,
+            "p90_ms": 30.5516,
+            "fps": 37.89,
+            "peak_memory_kb": 114456
+          }
+        }
+      ]
+    }
+  ],
+  "phone_summary": {
+    "v2": {
+      "median_ms": {
+        "values": [
+          24.9455,
+          23.8034,
+          25.7068
+        ],
+        "mean": 24.81856666666667,
+        "range": 1.9034000000000013
+      },
+      "p90_ms": {
+        "values": [
+          28.2895,
+          29.0842,
+          30.0971
+        ],
+        "mean": 29.15693333333333,
+        "range": 1.8076000000000008
+      }
+    },
+    "ecbsr": {
+      "median_ms": {
+        "values": [
+          26.4326,
+          26.1923,
+          26.3921
+        ],
+        "mean": 26.339,
+        "range": 0.2403000000000013
+      },
+      "p90_ms": {
+        "values": [
+          29.8121,
+          29.9247,
+          30.5516
+        ],
+        "mean": 30.09613333333333,
+        "range": 0.7394999999999996
+      }
+    }
+  },
+  "benchmark": null,
+  "decision": {
+    "axes": {
+      "val_psnr": "tie",
+      "phone_median": "cand_better",
+      "phone_p90": "tie",
+      "ncnn_bytes": "tie"
+    },
+    "cand_wins": 1,
+    "ref_wins": 0,
+    "ties": 3,
+    "size_save_frac": 0.003857687137596144,
+    "realtime_median_ok": true,
+    "stability_p90_ok": true,
+    "verdict": "meaningful_nondominated_provisional_freeze",
+    "note": "Differences inside E_val / E_med / E_p90 are ties. Median\u226433.3ms is real-time budget; p90 needed for stability claim. Do not update models.json until freeze is written to checklist."
+  },
+  "next_gate": {
+    "if_v2_b_weak": "consider v2_a only if speed/size headroom beyond envelope; v2_c only if quality hopeful",
+    "if_dominated": "Q4 Exit freeze_ref=ECBSR-M10C16",
+    "do_not": "update deploy/models.json until checklist freeze_ref written"
+  }
+}

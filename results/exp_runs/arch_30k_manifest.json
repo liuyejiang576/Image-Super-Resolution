@@ -1,0 +1,45 @@
+[
+  {
+    "run_id": "fsrcnn_fix_clean_30k",
+    "model": "fsrcnn",
+    "variant": "fsrcnn",
+    "resume_from_run_id": "fsrcnn_fix_clean_20k",
+    "config": "configs/exp/fsrcnn_fix_clean_30k.yaml",
+    "updates_target": 30000,
+    "epochs": 300,
+    "batch_size": 8,
+    "milestones": [180, 255],
+    "loss_type": "mse",
+    "description": "30k continuation: FSRCNN (resume from 20k latest.pt, ~100 extra epochs low-LR)"
+  },
+  {
+    "run_id": "mobile_srnet_30k",
+    "model": "mobile_srnet",
+    "variant": "base",
+    "feat": 40,
+    "num_blocks": 6,
+    "resume_from_run_id": "mobile_srnet_20k",
+    "config": "configs/exp/mobile_srnet_30k.yaml",
+    "updates_target": 30000,
+    "epochs": 910,
+    "batch_size": 24,
+    "milestones": [546, 774],
+    "loss_type": "mse",
+    "description": "30k continuation: MobileSRNet-Base (resume from 20k latest.pt)"
+  },
+  {
+    "run_id": "mobile_srnet_plus_30k",
+    "model": "mobile_srnet",
+    "variant": "plus",
+    "feat": 64,
+    "num_blocks": 8,
+    "resume_from_run_id": "mobile_srnet_plus_20k",
+    "config": "configs/exp/mobile_srnet_plus_30k.yaml",
+    "updates_target": 30000,
+    "epochs": 910,
+    "batch_size": 24,
+    "milestones": [546, 774],
+    "loss_type": "mse",
+    "description": "30k continuation: MobileSRNet-Plus (resume from 20k latest.pt)"
+  }
+]

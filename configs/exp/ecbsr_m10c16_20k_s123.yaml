@@ -1,0 +1,38 @@
+checkpoint:
+  best_name: best.pt
+  dir: results/exp_runs/ecbsr_m10c16_20k_s123/checkpoints
+  latest_name: latest.pt
+  log_path: results/exp_runs/ecbsr_m10c16_20k_s123/train_log.jsonl
+dataset:
+  augment: true
+  hr_patch_size: 256
+  scale: 4
+  train_hr_dir: data/div2k/DIV2K_train_HR
+  valid_hr_dir: data/div2k/DIV2K_valid_HR
+model:
+  act_type: prelu
+  depth_multiplier: 2.0
+  num_block: 10
+  num_channel: 16
+  num_channels: 3
+  type: ecbsr
+  with_idt: true
+train:
+  amp: true
+  batch_size: 24
+  epochs: 607
+  gamma: 0.5
+  learning_rate: 0.001
+  log_every: 50
+  loss_type: mse
+  max_train_steps_per_epoch: null
+  milestones:
+  - 364
+  - 516
+  num_workers: 8
+  seed: 123
+  weight_decay: 0.0
+validation:
+  batch_size: 1
+  max_images: 100
+  num_workers: 2

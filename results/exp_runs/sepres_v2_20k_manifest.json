@@ -1,0 +1,47 @@
+[
+  {
+    "run_id": "sepres_v2_c16n10_20k",
+    "model": "sepres_v2",
+    "variant": "C16N10",
+    "num_block": 10,
+    "num_channel": 16,
+    "config": "configs/exp/sepres_v2_c16n10_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "milestones": [364, 516],
+    "loss_type": "mse",
+    "train_script": "train_sepres_v2.py",
+    "description": "B4 first train: SepResV2 C16N10 iso-MAC vs ECBSR-M10C16 (gated a/c later)"
+  },
+  {
+    "run_id": "sepres_v2_c16n8_20k",
+    "model": "sepres_v2",
+    "variant": "C16N8",
+    "num_block": 8,
+    "num_channel": 16,
+    "config": "configs/exp/sepres_v2_c16n8_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "milestones": [364, 516],
+    "loss_type": "mse",
+    "train_script": "train_sepres_v2.py",
+    "description": "B4 gated: shallower speed/size probe — launch only after v2_b + pre-screen"
+  },
+  {
+    "run_id": "sepres_v2_c20n6_20k",
+    "model": "sepres_v2",
+    "variant": "C20N6",
+    "num_block": 6,
+    "num_channel": 20,
+    "config": "configs/exp/sepres_v2_c20n6_20k.yaml",
+    "updates_target": 20000,
+    "epochs": 607,
+    "batch_size": 24,
+    "milestones": [364, 516],
+    "loss_type": "mse",
+    "train_script": "train_sepres_v2.py",
+    "description": "B4 gated: iso-budget wide/shallow — launch only after v2_b + pre-screen"
+  }
+]

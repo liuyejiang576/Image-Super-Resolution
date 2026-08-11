@@ -1,0 +1,12 @@
+{
+  "paused_at": "2026-07-11T23:00:20.339174+08:00",
+  "runs": [
+    {
+      "run_id": "sepres_v2_c16n10_20k_s123",
+      "variant": "PECSR_s123",
+      "epoch": 16,
+      "target_epochs": 607,
+      "resume_from": "results/exp_runs/sepres_v2_c16n10_20k_s123/checkpoints/latest.pt"
+    }
+  ]
+}

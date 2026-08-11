@@ -30,12 +30,12 @@ conda run -n cv_env python scripts/eval_fsrcnn.py \
   --device cuda \
   --save-json results/fsrcnn_small/benchmark_metrics.json
 
-conda run -n cv_env python scripts/compare_metrics.py \
+conda run -n cv_env python scripts/_inactive/compare_metrics.py \
   --base results/bicubic_metrics.json \
   --target results/fsrcnn_small/benchmark_metrics.json \
   > results/fsrcnn_small/compare_vs_bicubic.txt
 
-conda run -n cv_env python scripts/compare_metrics.py \
+conda run -n cv_env python scripts/_inactive/compare_metrics.py \
   --base results/fsrcnn_fix_clean/benchmark_metrics.json \
   --target results/fsrcnn_small/benchmark_metrics.json \
   > results/fsrcnn_small/compare_vs_fix_clean.txt
