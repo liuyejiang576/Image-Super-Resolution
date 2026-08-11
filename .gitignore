@@ -13,6 +13,29 @@ venv/
 checkpoints/
 logs/
 
+# Lab-only docs / archives (keep on disk; do not publish)
+/IMPLEMENTATION.md
+/proposal.md
+/_inactive/
+/scripts/_inactive/
+/configs/_inactive/
+/deploy/_inactive/
+
+# Internal Dual/Plain probes (local archive; not public cast)
+src/models/dual_plain_sr.py
+scripts/dual_plain_2k.py
+scripts/train_dual_plain.py
+scripts/run_dual_plain_2k_probes.py
+scripts/run_dual_plain_posttrain.py
+scripts/prescreen_dual_plain.py
+scripts/check_dual_plain_fuse.py
+configs/exp/dual_stream_c20n5_2k.yaml
+configs/exp/plain_c20n5_2k.yaml
+results/exp_runs/dual_plain_2k_manifest.json
+results/exp_runs/b4_dual_plain_*.json
+deploy/artifacts/ncnn/dual_*.param
+deploy/artifacts/ncnn/plain_c20n5_*.param
+
 # Results: ignore contents by default; track small evidence bundle via exceptions
 /results/*
 !/results/MANIFEST.md

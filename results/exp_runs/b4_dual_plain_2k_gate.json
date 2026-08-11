@@ -1,9 +1,0 @@
-{
-  "dual_best": 26.1821,
-  "plain_best": 26.6505,
-  "dual_minus_plain": -0.4684,
-  "dual_minus_ecbsr_2k": -1.0415,
-  "gate_dual_gt_plain_0p03": false,
-  "gate_dual_within_0p10_of_ecbsr": false,
-  "verdict": "FAIL_Q4_Exit"
-}

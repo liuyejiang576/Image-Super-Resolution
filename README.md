@@ -15,7 +15,7 @@ pip install -r requirements.txt
 python scripts/check_env.py
 ```
 
-Eval / train / phone deploy: `IMPLEMENTATION.md`, `configs/README.md`, `deploy/DEPLOY.md`.  
+Eval / train / phone deploy: `configs/README.md`, `deploy/DEPLOY.md`.  
 Class demo (adb + NCNN, no APK): `deploy/demo/README.md`.
 
 ## Layout
